@@ -1,8 +1,8 @@
+import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:test_drive/presentation/topbar.dart';
-
 
 void main() {
   testWidgets('Test page name', (WidgetTester tester) async {
@@ -12,7 +12,9 @@ void main() {
     expect(libraryTitle, findsOneWidget);
   });
 
+
   testWidgets('Test page icons', (WidgetTester tester) async {
+
     await tester.pumpWidget(MaterialApp(home: Scaffold(appBar: Topbar())));
 
     const libraryIcons = [
@@ -25,6 +27,5 @@ void main() {
       final iconFinder = find.byIcon(icon);
       expect(iconFinder, findsOneWidget);
     }
-
   });
 }

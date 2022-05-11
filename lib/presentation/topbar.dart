@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:test_drive/application/menu/menu_cubit.dart';
 
 class Topbar extends StatelessWidget with PreferredSizeWidget {
   const Topbar({Key? key}) : super(key: key);
@@ -12,18 +14,33 @@ class Topbar extends StatelessWidget with PreferredSizeWidget {
       FontAwesomeIcons.borderAll
     ];
 
-    List<Widget> iconButtons = libraryIcons.map((IconData icon) => Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
-      child: Icon(icon),
-    )).toList();
+    List<Widget> iconButtons = libraryIcons
+        .map((IconData icon) => Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Icon(icon),
+            ))
+        .toList();
 
-    return AppBar(
-      title: Text("Library"),
-      actions: iconButtons,
+    return BlocBuilder<MenuCubit, MenuState>(
+      builder: (context, state) {
+        late String title;
+
+        state.map(library: (_) {
+          title = 'Library';
+        },quotes: (_) {
+          title = 'Quotes';
+        },settings: (_) {
+          title = 'Settings';
+        });
+
+        return AppBar(
+          title: Text(title),
+          actions: iconButtons,
+        );
+      },
     );
   }
 
   @override
-  // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(60);
+  Size get preferredSize => const Size.fromHeight(60);
 }
