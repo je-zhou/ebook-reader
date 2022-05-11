@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:test_drive/presentation/menu.dart';
 
-import 'package:test_drive/main.dart';
-import 'package:test_drive/menu.dart';
 
 void main() {
   testWidgets('Menu contains library, quotes, settings test', (WidgetTester tester) async {
@@ -21,5 +20,6 @@ void main() {
     expect(quotesIcon, findsOneWidget);
     expect(settingsText, findsOneWidget);
     expect(settingsIcon, findsOneWidget);
+    
   });
 }

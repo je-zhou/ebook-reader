@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:test_drive/presentation/topbar.dart';
 
-import 'package:test_drive/topbar.dart';
 
 void main() {
   testWidgets('Test page name', (WidgetTester tester) async {
