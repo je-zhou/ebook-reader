@@ -5,17 +5,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:test_drive/presentation/topbar.dart';
 
 void main() {
-  testWidgets('Renders properly', (WidgetTester tester) async {
-    await tester.pumpWidget(
-        const MaterialApp(
-            home: Scaffold(
-                appBar: Topbar(title: 'Library',)
-            )
-        )
-    );
+  testWidgets('Test page name', (WidgetTester tester) async {
+    await tester.pumpWidget(MaterialApp(home: Scaffold(appBar: Topbar())));
 
     final libraryTitle = find.text('Library');
     expect(libraryTitle, findsOneWidget);
+  });
+
+
+  testWidgets('Test page icons', (WidgetTester tester) async {
+
+    await tester.pumpWidget(MaterialApp(home: Scaffold(appBar: Topbar())));
 
     const libraryIcons = [
       FontAwesomeIcons.magnifyingGlass,
