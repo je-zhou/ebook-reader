@@ -1,11 +1,11 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'menu_state.dart';
-part 'menu_cubit.freezed.dart';
+part 'page_selector_state.dart';
+part 'page_selector_cubit.freezed.dart';
 
-class MenuCubit extends Cubit<MenuState> {
-  MenuCubit() : super(MenuState.library());
+class PageSelectorCubit extends Cubit<PageSelectorState> {
+  PageSelectorCubit() : super(const PageSelectorState.library());
 
   intToState(int index) {
     switch (index) {
@@ -27,7 +27,7 @@ class MenuCubit extends Cubit<MenuState> {
     return state.map(library: (_) => 0, quotes: (_) => 1, settings: (_) => 2);
   }
 
-  navigateToLibrary() => emit(MenuState.library());
-  navigateToQuotes() => emit(MenuState.quotes());
-  navigateToSettings() => emit(MenuState.settings());
+  navigateToLibrary() => emit(const PageSelectorState.library());
+  navigateToQuotes() => emit(const PageSelectorState.quotes());
+  navigateToSettings() => emit(const PageSelectorState.settings());
 }

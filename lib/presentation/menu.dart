@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:test_drive/application/menu/menu_cubit.dart';
+
+import '../application/page_selector/page_selector_cubit.dart';
 
 class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key);
@@ -16,9 +17,9 @@ class Menu extends StatelessWidget {
       BottomNavigationBarItem(
           label: "Settings", icon: Icon(FontAwesomeIcons.gear))
     ];
-    return BlocBuilder<MenuCubit, MenuState>(
+    return BlocBuilder<PageSelectorCubit, PageSelectorState>(
       builder: (context, state) {
-        MenuCubit cubit = context.read<MenuCubit>();
+        PageSelectorCubit cubit = context.read<PageSelectorCubit>();
 
         return BottomNavigationBar(
           currentIndex: cubit.stateToInt(),

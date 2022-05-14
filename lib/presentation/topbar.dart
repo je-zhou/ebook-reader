@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:test_drive/application/menu/menu_cubit.dart';
+
+import '../application/page_selector/page_selector_cubit.dart';
 
 class Topbar extends StatelessWidget with PreferredSizeWidget {
   const Topbar({Key? key}) : super(key: key);
@@ -21,15 +22,15 @@ class Topbar extends StatelessWidget with PreferredSizeWidget {
             ))
         .toList();
 
-    return BlocBuilder<MenuCubit, MenuState>(
+    return BlocBuilder<PageSelectorCubit, PageSelectorState>(
       builder: (context, state) {
         late String title;
 
         state.map(library: (_) {
           title = 'Library';
-        },quotes: (_) {
+        }, quotes: (_) {
           title = 'Quotes';
-        },settings: (_) {
+        }, settings: (_) {
           title = 'Settings';
         });
 

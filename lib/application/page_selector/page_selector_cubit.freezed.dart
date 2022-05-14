@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'menu_cubit.dart';
+part of 'page_selector_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,86 +14,88 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$MenuStateTearOff {
-  const _$MenuStateTearOff();
+class _$PageSelectorStateTearOff {
+  const _$PageSelectorStateTearOff();
 
   _Library library() {
     return const _Library();
   }
 
-  _Quotes quotes() {
-    return const _Quotes();
-  }
-
   _Settings settings() {
     return const _Settings();
+  }
+
+  _Quotes quotes() {
+    return const _Quotes();
   }
 }
 
 /// @nodoc
-const $MenuState = _$MenuStateTearOff();
+const $PageSelectorState = _$PageSelectorStateTearOff();
 
 /// @nodoc
-mixin _$MenuState {
+mixin _$PageSelectorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() library,
-    required TResult Function() quotes,
     required TResult Function() settings,
+    required TResult Function() quotes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? library,
-    TResult Function()? quotes,
     TResult Function()? settings,
+    TResult Function()? quotes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? library,
-    TResult Function()? quotes,
     TResult Function()? settings,
+    TResult Function()? quotes,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Library value) library,
-    required TResult Function(_Quotes value) quotes,
     required TResult Function(_Settings value) settings,
+    required TResult Function(_Quotes value) quotes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Library value)? library,
-    TResult Function(_Quotes value)? quotes,
     TResult Function(_Settings value)? settings,
+    TResult Function(_Quotes value)? quotes,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Library value)? library,
-    TResult Function(_Quotes value)? quotes,
     TResult Function(_Settings value)? settings,
+    TResult Function(_Quotes value)? quotes,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MenuStateCopyWith<$Res> {
-  factory $MenuStateCopyWith(MenuState value, $Res Function(MenuState) then) =
-      _$MenuStateCopyWithImpl<$Res>;
+abstract class $PageSelectorStateCopyWith<$Res> {
+  factory $PageSelectorStateCopyWith(
+          PageSelectorState value, $Res Function(PageSelectorState) then) =
+      _$PageSelectorStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$MenuStateCopyWithImpl<$Res> implements $MenuStateCopyWith<$Res> {
-  _$MenuStateCopyWithImpl(this._value, this._then);
+class _$PageSelectorStateCopyWithImpl<$Res>
+    implements $PageSelectorStateCopyWith<$Res> {
+  _$PageSelectorStateCopyWithImpl(this._value, this._then);
 
-  final MenuState _value;
+  final PageSelectorState _value;
   // ignore: unused_field
-  final $Res Function(MenuState) _then;
+  final $Res Function(PageSelectorState) _then;
 }
 
 /// @nodoc
@@ -103,7 +105,7 @@ abstract class _$LibraryCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$LibraryCopyWithImpl<$Res> extends _$MenuStateCopyWithImpl<$Res>
+class __$LibraryCopyWithImpl<$Res> extends _$PageSelectorStateCopyWithImpl<$Res>
     implements _$LibraryCopyWith<$Res> {
   __$LibraryCopyWithImpl(_Library _value, $Res Function(_Library) _then)
       : super(_value, (v) => _then(v as _Library));
@@ -119,7 +121,7 @@ class _$_Library implements _Library {
 
   @override
   String toString() {
-    return 'MenuState.library()';
+    return 'PageSelectorState.library()';
   }
 
   @override
@@ -135,8 +137,8 @@ class _$_Library implements _Library {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() library,
-    required TResult Function() quotes,
     required TResult Function() settings,
+    required TResult Function() quotes,
   }) {
     return library();
   }
@@ -145,8 +147,8 @@ class _$_Library implements _Library {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? library,
-    TResult Function()? quotes,
     TResult Function()? settings,
+    TResult Function()? quotes,
   }) {
     return library?.call();
   }
@@ -155,8 +157,8 @@ class _$_Library implements _Library {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? library,
-    TResult Function()? quotes,
     TResult Function()? settings,
+    TResult Function()? quotes,
     required TResult orElse(),
   }) {
     if (library != null) {
@@ -169,8 +171,8 @@ class _$_Library implements _Library {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Library value) library,
-    required TResult Function(_Quotes value) quotes,
     required TResult Function(_Settings value) settings,
+    required TResult Function(_Quotes value) quotes,
   }) {
     return library(this);
   }
@@ -179,8 +181,8 @@ class _$_Library implements _Library {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Library value)? library,
-    TResult Function(_Quotes value)? quotes,
     TResult Function(_Settings value)? settings,
+    TResult Function(_Quotes value)? quotes,
   }) {
     return library?.call(this);
   }
@@ -189,8 +191,8 @@ class _$_Library implements _Library {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Library value)? library,
-    TResult Function(_Quotes value)? quotes,
     TResult Function(_Settings value)? settings,
+    TResult Function(_Quotes value)? quotes,
     required TResult orElse(),
   }) {
     if (library != null) {
@@ -200,116 +202,8 @@ class _$_Library implements _Library {
   }
 }
 
-abstract class _Library implements MenuState {
+abstract class _Library implements PageSelectorState {
   const factory _Library() = _$_Library;
-}
-
-/// @nodoc
-abstract class _$QuotesCopyWith<$Res> {
-  factory _$QuotesCopyWith(_Quotes value, $Res Function(_Quotes) then) =
-      __$QuotesCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$QuotesCopyWithImpl<$Res> extends _$MenuStateCopyWithImpl<$Res>
-    implements _$QuotesCopyWith<$Res> {
-  __$QuotesCopyWithImpl(_Quotes _value, $Res Function(_Quotes) _then)
-      : super(_value, (v) => _then(v as _Quotes));
-
-  @override
-  _Quotes get _value => super._value as _Quotes;
-}
-
-/// @nodoc
-
-class _$_Quotes implements _Quotes {
-  const _$_Quotes();
-
-  @override
-  String toString() {
-    return 'MenuState.quotes()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Quotes);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() library,
-    required TResult Function() quotes,
-    required TResult Function() settings,
-  }) {
-    return quotes();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? library,
-    TResult Function()? quotes,
-    TResult Function()? settings,
-  }) {
-    return quotes?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? library,
-    TResult Function()? quotes,
-    TResult Function()? settings,
-    required TResult orElse(),
-  }) {
-    if (quotes != null) {
-      return quotes();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Library value) library,
-    required TResult Function(_Quotes value) quotes,
-    required TResult Function(_Settings value) settings,
-  }) {
-    return quotes(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Library value)? library,
-    TResult Function(_Quotes value)? quotes,
-    TResult Function(_Settings value)? settings,
-  }) {
-    return quotes?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Library value)? library,
-    TResult Function(_Quotes value)? quotes,
-    TResult Function(_Settings value)? settings,
-    required TResult orElse(),
-  }) {
-    if (quotes != null) {
-      return quotes(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Quotes implements MenuState {
-  const factory _Quotes() = _$_Quotes;
 }
 
 /// @nodoc
@@ -319,7 +213,8 @@ abstract class _$SettingsCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$SettingsCopyWithImpl<$Res> extends _$MenuStateCopyWithImpl<$Res>
+class __$SettingsCopyWithImpl<$Res>
+    extends _$PageSelectorStateCopyWithImpl<$Res>
     implements _$SettingsCopyWith<$Res> {
   __$SettingsCopyWithImpl(_Settings _value, $Res Function(_Settings) _then)
       : super(_value, (v) => _then(v as _Settings));
@@ -335,7 +230,7 @@ class _$_Settings implements _Settings {
 
   @override
   String toString() {
-    return 'MenuState.settings()';
+    return 'PageSelectorState.settings()';
   }
 
   @override
@@ -351,8 +246,8 @@ class _$_Settings implements _Settings {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() library,
-    required TResult Function() quotes,
     required TResult Function() settings,
+    required TResult Function() quotes,
   }) {
     return settings();
   }
@@ -361,8 +256,8 @@ class _$_Settings implements _Settings {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? library,
-    TResult Function()? quotes,
     TResult Function()? settings,
+    TResult Function()? quotes,
   }) {
     return settings?.call();
   }
@@ -371,8 +266,8 @@ class _$_Settings implements _Settings {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? library,
-    TResult Function()? quotes,
     TResult Function()? settings,
+    TResult Function()? quotes,
     required TResult orElse(),
   }) {
     if (settings != null) {
@@ -385,8 +280,8 @@ class _$_Settings implements _Settings {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Library value) library,
-    required TResult Function(_Quotes value) quotes,
     required TResult Function(_Settings value) settings,
+    required TResult Function(_Quotes value) quotes,
   }) {
     return settings(this);
   }
@@ -395,8 +290,8 @@ class _$_Settings implements _Settings {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_Library value)? library,
-    TResult Function(_Quotes value)? quotes,
     TResult Function(_Settings value)? settings,
+    TResult Function(_Quotes value)? quotes,
   }) {
     return settings?.call(this);
   }
@@ -405,8 +300,8 @@ class _$_Settings implements _Settings {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Library value)? library,
-    TResult Function(_Quotes value)? quotes,
     TResult Function(_Settings value)? settings,
+    TResult Function(_Quotes value)? quotes,
     required TResult orElse(),
   }) {
     if (settings != null) {
@@ -416,6 +311,114 @@ class _$_Settings implements _Settings {
   }
 }
 
-abstract class _Settings implements MenuState {
+abstract class _Settings implements PageSelectorState {
   const factory _Settings() = _$_Settings;
+}
+
+/// @nodoc
+abstract class _$QuotesCopyWith<$Res> {
+  factory _$QuotesCopyWith(_Quotes value, $Res Function(_Quotes) then) =
+      __$QuotesCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$QuotesCopyWithImpl<$Res> extends _$PageSelectorStateCopyWithImpl<$Res>
+    implements _$QuotesCopyWith<$Res> {
+  __$QuotesCopyWithImpl(_Quotes _value, $Res Function(_Quotes) _then)
+      : super(_value, (v) => _then(v as _Quotes));
+
+  @override
+  _Quotes get _value => super._value as _Quotes;
+}
+
+/// @nodoc
+
+class _$_Quotes implements _Quotes {
+  const _$_Quotes();
+
+  @override
+  String toString() {
+    return 'PageSelectorState.quotes()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _Quotes);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() library,
+    required TResult Function() settings,
+    required TResult Function() quotes,
+  }) {
+    return quotes();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? library,
+    TResult Function()? settings,
+    TResult Function()? quotes,
+  }) {
+    return quotes?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? library,
+    TResult Function()? settings,
+    TResult Function()? quotes,
+    required TResult orElse(),
+  }) {
+    if (quotes != null) {
+      return quotes();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Library value) library,
+    required TResult Function(_Settings value) settings,
+    required TResult Function(_Quotes value) quotes,
+  }) {
+    return quotes(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_Library value)? library,
+    TResult Function(_Settings value)? settings,
+    TResult Function(_Quotes value)? quotes,
+  }) {
+    return quotes?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Library value)? library,
+    TResult Function(_Settings value)? settings,
+    TResult Function(_Quotes value)? quotes,
+    required TResult orElse(),
+  }) {
+    if (quotes != null) {
+      return quotes(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Quotes implements PageSelectorState {
+  const factory _Quotes() = _$_Quotes;
 }
