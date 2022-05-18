@@ -22,26 +22,32 @@ void main() {
   });
 
   void arrangeInitialStateIsLibraryPage() =>
-    when(() => mockPageSelectorCubit.state).thenReturn(const PageSelectorState.library());
+      when(() => mockPageSelectorCubit.state)
+          .thenReturn(const PageSelectorState.library());
 
   void arrangeInitialStateIsQuotesPage() =>
-    when(() => mockPageSelectorCubit.state).thenReturn(const PageSelectorState.quotes());
+      when(() => mockPageSelectorCubit.state)
+          .thenReturn(const PageSelectorState.quotes());
 
   void arrangeInitialStateIsSettingsPage() =>
-    when(() => mockPageSelectorCubit.state).thenReturn(const PageSelectorState.settings());
+      when(() => mockPageSelectorCubit.state)
+          .thenReturn(const PageSelectorState.settings());
 
   void arrangeBookViewState() {
-    when(() => mockBookViewCubit.state).thenReturn(const BookViewState(isGridView: true, searchBy: ''));
+    when(() => mockBookViewCubit.state)
+        .thenReturn(const BookViewState(isGridView: true, searchBy: ''));
   }
 
   Widget createWidgetUnderTest() {
-    return BlocProvider<PageSelectorCubit>(
-        create: (context) => mockPageSelectorCubit,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<PageSelectorCubit>(create: (context) => mockPageSelectorCubit),
+        BlocProvider<BookViewCubit>(create: (context) => mockBookViewCubit)
+      ],
       child: const MaterialApp(
-        home: Scaffold(
-          body: PageWrapper(),
-        )
-      ),
+          home: Scaffold(
+        body: PageWrapper(),
+      )),
     );
   }
 
@@ -52,12 +58,7 @@ void main() {
 
       final libraryPage = find.byType(LibraryPage);
 
-      await tester.pumpWidget(
-        BlocProvider<BookViewCubit>(
-          create: (context) => mockBookViewCubit,
-          child: createWidgetUnderTest()
-        )
-      );
+      await tester.pumpWidget(createWidgetUnderTest());
 
       expect(libraryPage, findsOneWidget);
     });
