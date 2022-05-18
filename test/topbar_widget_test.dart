@@ -19,7 +19,7 @@ void main() {
   Widget createWidgetUnderTest() {
     return BlocProvider<PageSelectorCubit>(
       create: (context) => mockCubit,
-      child: const MaterialApp(home: Scaffold(bottomNavigationBar: Topbar())),
+      child: const MaterialApp(home: Scaffold(appBar: Topbar())),
     );
   }
 
