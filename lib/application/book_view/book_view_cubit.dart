@@ -6,4 +6,16 @@ part 'book_view_cubit.freezed.dart';
 
 class BookViewCubit extends Cubit<BookViewState> {
   BookViewCubit() : super(BookViewState.initial());
+
+  void toggleBookView() {
+    emit(state.copyWith(isGridView: !state.isGridView));
+  }
+
+  void search(String str) {
+    emit(state.copyWith(searchBy: str));
+  }
+
+  void clearSearch() {
+    emit(state.copyWith(searchBy: ""));
+  }
 }
