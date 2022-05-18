@@ -20,13 +20,6 @@ void main() {
   });
 
   Widget createWidgetUnderTest() {
-    return BlocProvider<PageSelectorCubit>(
-      create: (context) => mockPageSelectorCubit,
-      child: const MaterialApp(home: Scaffold(appBar: Topbar())),
-    );
-  }
-
-  Widget createWidgetUnderTestWithBookViewCubit() {
     return MultiBlocProvider(
       providers: [
         BlocProvider<PageSelectorCubit>(
@@ -40,6 +33,13 @@ void main() {
     );
   }
 
+  List<IconData> allUsedIcons = [
+    FontAwesomeIcons.magnifyingGlass,
+    FontAwesomeIcons.filter,
+    FontAwesomeIcons.borderAll,
+    FontAwesomeIcons.list,
+  ];
+
   void arrangePageIsLibrary() => when(() => mockPageSelectorCubit.state)
       .thenReturn(const PageSelectorState.library());
 
@@ -49,10 +49,18 @@ void main() {
   void arrangePageIsSettings() => when(() => mockPageSelectorCubit.state)
       .thenReturn(const PageSelectorState.settings());
 
+  void arrangeStateIsInGridView() => when(() => mockBookViewCubit.state)
+      .thenReturn(BookViewState.initial().copyWith(isGridView: true));
+
+  void arrangeStateIsInListView() => when(() => mockBookViewCubit.state)
+      .thenReturn(BookViewState.initial().copyWith(isGridView: false));
+
   group('Topbar should render correct page name', () {
     testWidgets('Library title when in library state',
         (WidgetTester tester) async {
       arrangePageIsLibrary();
+      arrangeStateIsInGridView();
+
       await tester.pumpWidget(createWidgetUnderTest());
 
       final libraryTitle = find.text('Library');
@@ -62,6 +70,7 @@ void main() {
     testWidgets('Quotes title when in quotes state',
         (WidgetTester tester) async {
       arrangePageIsQuotes();
+      arrangeStateIsInGridView();
 
       await tester.pumpWidget(createWidgetUnderTest());
 
@@ -72,6 +81,7 @@ void main() {
     testWidgets('Settings title when in settings state',
         (WidgetTester tester) async {
       arrangePageIsSettings();
+      arrangeStateIsInGridView();
 
       await tester.pumpWidget(createWidgetUnderTest());
 
@@ -81,59 +91,93 @@ void main() {
   });
 
   group("Icons render correctly", () {
-    testWidgets('Library icons are correct', (WidgetTester tester) async {
+    testWidgets('Library icons are correct when in Grid View State',
+        (WidgetTester tester) async {
       arrangePageIsLibrary();
+      arrangeStateIsInGridView();
 
       await tester.pumpWidget(createWidgetUnderTest());
 
-      const libraryIcons = [
+      List<IconData> libraryIcons = [
         FontAwesomeIcons.magnifyingGlass,
         FontAwesomeIcons.filter,
-        FontAwesomeIcons.borderAll
+        FontAwesomeIcons.list
       ];
 
-      for (var icon in libraryIcons) {
+      for (IconData icon in allUsedIcons) {
         final iconFinder = find.byIcon(icon);
-        expect(iconFinder, findsOneWidget);
+
+        if (libraryIcons.contains(icon)) {
+          expect(iconFinder, findsOneWidget);
+        } else {
+          expect(iconFinder, findsNothing);
+        }
+      }
+    });
+    testWidgets('Library icons are correct when in List View State',
+        (WidgetTester tester) async {
+      arrangePageIsLibrary();
+      arrangeStateIsInListView();
+
+      await tester.pumpWidget(createWidgetUnderTest());
+
+      List<IconData> libraryIcons = [
+        FontAwesomeIcons.magnifyingGlass,
+        FontAwesomeIcons.filter,
+        FontAwesomeIcons.borderAll,
+      ];
+
+      for (IconData icon in allUsedIcons) {
+        final iconFinder = find.byIcon(icon);
+
+        if (libraryIcons.contains(icon)) {
+          expect(iconFinder, findsOneWidget);
+        } else {
+          expect(iconFinder, findsNothing);
+        }
       }
     });
 
     testWidgets('Quotes icons are correct', (WidgetTester tester) async {
       arrangePageIsQuotes();
+      arrangeStateIsInGridView();
 
       await tester.pumpWidget(createWidgetUnderTest());
 
-      const quotesIcons = [
+      List<IconData> quotesIcons = [
         FontAwesomeIcons.magnifyingGlass,
         FontAwesomeIcons.filter,
       ];
 
-      for (var icon in quotesIcons) {
+      for (IconData icon in allUsedIcons) {
         final iconFinder = find.byIcon(icon);
-        expect(iconFinder, findsOneWidget);
+
+        if (quotesIcons.contains(icon)) {
+          expect(iconFinder, findsOneWidget);
+        } else {
+          expect(iconFinder, findsNothing);
+        }
       }
     });
     testWidgets('Settings icons are correct', (WidgetTester tester) async {
       arrangePageIsSettings();
+      arrangeStateIsInGridView();
 
       await tester.pumpWidget(createWidgetUnderTest());
 
-      const settingsIcons = [
+      List<IconData> settingsIcons = [
         FontAwesomeIcons.magnifyingGlass,
       ];
 
-      for (var icon in settingsIcons) {
+      for (IconData icon in allUsedIcons) {
         final iconFinder = find.byIcon(icon);
-        expect(iconFinder, findsOneWidget);
-      }
-    });
-  });
 
-  group('Testing icon functionality working as intended', () {
-    testWidgets(
-        'When Grid icon is clicked we will toggle isGridView value and '
-        'then show a list icon', (WidgetTester tester) async {
-      arrangePageIsLibrary();
+        if (settingsIcons.contains(icon)) {
+          expect(iconFinder, findsOneWidget);
+        } else {
+          expect(iconFinder, findsNothing);
+        }
+      }
     });
   });
 }
