@@ -7,8 +7,7 @@ import 'package:test_drive/application/page_selector/page_selector_cubit.dart';
 import 'package:test_drive/presentation/menu.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockPageSelectorCubit extends MockCubit<PageSelectorState>
-    implements PageSelectorCubit {}
+import 'mock_page_selector_cubit.dart';
 
 void main() {
   late MockPageSelectorCubit mockCubit;

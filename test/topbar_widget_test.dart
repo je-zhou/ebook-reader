@@ -1,21 +1,62 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:test_drive/application/page_selector/page_selector_cubit.dart';
 import 'package:test_drive/presentation/topbar.dart';
+import 'package:mocktail/mocktail.dart';
+
+import 'mock_page_selector_cubit.dart';
 
 void main() {
-  testWidgets('Test page name', (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(home: Scaffold(appBar: Topbar())));
+  late MockPageSelectorCubit mockCubit;
 
-    final libraryTitle = find.text('Library');
-    expect(libraryTitle, findsOneWidget);
+  setUp(() {
+    mockCubit = MockPageSelectorCubit();
   });
 
+  Widget createWidgetUnderTest() {
+    return BlocProvider<PageSelectorCubit>(
+      create: (context) => mockCubit,
+      child: const MaterialApp(home: Scaffold(bottomNavigationBar: Topbar())),
+    );
+  }
+
+  group('Topbar should render correct page name', () {
+    testWidgets('Library', (WidgetTester tester) async {
+      when(() => mockCubit.state).thenReturn(const PageSelectorState.library());
+
+      await tester.pumpWidget(createWidgetUnderTest());
+
+      final libraryTitle = find.text('Library');
+      expect(libraryTitle, findsOneWidget);
+    });
+
+    testWidgets('Quotes', (WidgetTester tester) async {
+      when(() => mockCubit.state).thenReturn(const PageSelectorState.quotes());
+
+      await tester.pumpWidget(createWidgetUnderTest());
+
+      final libraryTitle = find.text('Quotes');
+      expect(libraryTitle, findsOneWidget);
+    });
+
+    testWidgets('Settings', (WidgetTester tester) async {
+      when(() => mockCubit.state)
+          .thenReturn(const PageSelectorState.settings());
+
+      await tester.pumpWidget(createWidgetUnderTest());
+
+      final libraryTitle = find.text('Settings');
+      expect(libraryTitle, findsOneWidget);
+    });
+  });
 
   testWidgets('Test page icons', (WidgetTester tester) async {
+    when(() => mockCubit.state).thenReturn(const PageSelectorState.library());
 
-    await tester.pumpWidget(MaterialApp(home: Scaffold(appBar: Topbar())));
+    await tester.pumpWidget(createWidgetUnderTest());
 
     const libraryIcons = [
       FontAwesomeIcons.magnifyingGlass,
