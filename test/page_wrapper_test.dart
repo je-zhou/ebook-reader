@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:test_drive/application/page_selector/page_selector_cubit.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test_drive/presentation/pages/library_page/library_page.dart';
