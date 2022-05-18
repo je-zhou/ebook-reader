@@ -6,7 +6,7 @@ import 'package:test_drive/application/page_selector/page_selector_cubit.dart';
 import 'package:test_drive/presentation/topbar.dart';
 import 'package:mocktail/mocktail.dart';
 
-import 'mock_page_selector_cubit.dart';
+import '../test_doubles/mock_page_selector_cubit.dart';
 
 void main() {
   late MockPageSelectorCubit mockCubit;
