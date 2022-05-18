@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:test_drive/application/book_view/book_view_cubit.dart';
 import 'package:test_drive/application/page_selector/page_selector_cubit.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test_drive/presentation/pages/library_page/library_page.dart';
@@ -8,78 +9,77 @@ import 'package:test_drive/presentation/pages/page_wrapper.dart';
 import 'package:test_drive/presentation/pages/quotes_page/quotes_page.dart';
 import 'package:test_drive/presentation/pages/settings_page/settings_page.dart';
 
+import '../test_doubles/mock_book_view_cubit.dart';
 import '../test_doubles/mock_page_selector_cubit.dart';
 
 void main() {
-  late MockPageSelectorCubit mockCubit;
+  late MockPageSelectorCubit mockPageSelectorCubit;
+  late MockBookViewCubit mockBookViewCubit;
 
   setUp(() {
-    mockCubit = MockPageSelectorCubit();
+    mockPageSelectorCubit = MockPageSelectorCubit();
+    mockBookViewCubit = MockBookViewCubit();
   });
 
-  void arrangeInitialStateIsLibraryPage() {
-    when(() => mockCubit.state).thenReturn(const PageSelectorState.library());
-  }
+  void arrangeInitialStateIsLibraryPage() =>
+    when(() => mockPageSelectorCubit.state).thenReturn(const PageSelectorState.library());
 
-  void arrangeInitialStateIsQuotesPage() {
-    when(() => mockCubit.state).thenReturn(const PageSelectorState.quotes());
-  }
+  void arrangeInitialStateIsQuotesPage() =>
+    when(() => mockPageSelectorCubit.state).thenReturn(const PageSelectorState.quotes());
 
-  void arrangeInitialStateIsSettingsPage() {
-    when(() => mockCubit.state).thenReturn(const PageSelectorState.settings());
+  void arrangeInitialStateIsSettingsPage() =>
+    when(() => mockPageSelectorCubit.state).thenReturn(const PageSelectorState.settings());
+
+  void arrangeBookViewState() {
+    when(() => mockBookViewCubit.state).thenReturn(const BookViewState(isGridView: true, searchBy: ''));
   }
 
   Widget createWidgetUnderTest() {
     return BlocProvider<PageSelectorCubit>(
-      create: (context) => mockCubit,
+        create: (context) => mockPageSelectorCubit,
       child: const MaterialApp(
         home: Scaffold(
           body: PageWrapper(),
-        ),
+        )
       ),
     );
   }
 
   group("Test page wrapper returns correct page", () {
     testWidgets('Shows Library Page correctly', (WidgetTester tester) async {
-      // arrange
       arrangeInitialStateIsLibraryPage();
+      arrangeBookViewState();
 
-      // find
+      final libraryPage = find.byType(LibraryPage);
 
-      final libraryText = find.byType(LibraryPage);
+      await tester.pumpWidget(
+        BlocProvider<BookViewCubit>(
+          create: (context) => mockBookViewCubit,
+          child: createWidgetUnderTest()
+        )
+      );
 
-      // test
-      await tester.pumpWidget(createWidgetUnderTest());
-
-      // expect
-      expect(libraryText, findsOneWidget);
+      expect(libraryPage, findsOneWidget);
     });
+
     testWidgets('Shows Quotes Page correctly', (WidgetTester tester) async {
-      // arrange
       arrangeInitialStateIsQuotesPage();
 
-      // find
-      final quotesText = find.byType(QuotesPage);
+      final quotesPage = find.byType(QuotesPage);
 
-      // test
       await tester.pumpWidget(createWidgetUnderTest());
 
-      // expect
-      expect(quotesText, findsOneWidget);
+      expect(quotesPage, findsOneWidget);
     });
+
     testWidgets('Shows Settings Page correctly', (WidgetTester tester) async {
-      // arrange
       arrangeInitialStateIsSettingsPage();
 
-      // find
-      final settingsText = find.byType(SettingsPage);
+      final settingsPage = find.byType(SettingsPage);
 
-      // test
       await tester.pumpWidget(createWidgetUnderTest());
 
-      // expect
-      expect(settingsText, findsOneWidget);
+      expect(settingsPage, findsOneWidget);
     });
   });
 }
