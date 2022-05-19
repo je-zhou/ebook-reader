@@ -9,8 +9,8 @@ import 'package:test_drive/presentation/pages/page_wrapper.dart';
 import 'package:test_drive/presentation/pages/quotes_page/quotes_page.dart';
 import 'package:test_drive/presentation/pages/settings_page/settings_page.dart';
 
-import '../test_doubles/mock_book_view_cubit.dart';
-import '../test_doubles/mock_page_selector_cubit.dart';
+import '../../test_doubles/mock_book_view_cubit.dart';
+import '../../test_doubles/mock_page_selector_cubit.dart';
 
 void main() {
   late MockPageSelectorCubit mockPageSelectorCubit;
