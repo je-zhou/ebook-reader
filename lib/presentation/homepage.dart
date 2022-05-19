@@ -15,9 +15,16 @@ class MyHomePage extends StatelessWidget {
     final Directory _photoDir = Directory('/storage/emulated/0/EbookReader');
 
     readDirectory() {
-      print(_photoDir.existsSync());
-      var list = _photoDir.listSync().map((e) => e).toList();
-      print(list);
+      if (Directory(_photoDir.path).existsSync()) {
+        print(_photoDir.existsSync());
+        var list = _photoDir
+            .listSync(followLinks: true, recursive: true)
+            .map((e) => e)
+            .toList();
+        print(list);
+      } else {
+        print("no directory found");
+      }
     }
 
     readDirectory();
