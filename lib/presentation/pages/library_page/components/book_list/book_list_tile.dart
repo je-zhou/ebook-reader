@@ -10,16 +10,23 @@ class BookListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child:  Column(
-          children:[
-            Row(children:[
-              Text(book.title),
-            ]),
-            Row(children:[
-              Text(book.author),
-            ]),
-            const Image(image: AssetImage('assets/hello_habits.jpg',), width: 100),
-          ])
-    );
+        decoration: BoxDecoration(border: Border.all()),
+        height: 100,
+        child: Row(children: [
+          Image(
+              image: AssetImage(
+                book.imageUrl,
+              ),
+              width: 100),
+          Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(book.title,
+                    style: const TextStyle(
+                        fontSize: 14, fontWeight: FontWeight.bold)),
+                Text(book.author, style: const TextStyle(fontSize: 12)),
+              ]),
+        ]));
   }
 }
