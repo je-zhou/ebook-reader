@@ -17,7 +17,8 @@ class BookListTile extends StatelessWidget {
             ]),
             Row(children:[
               Text(book.author),
-            ])
+            ]),
+            const Image(image: AssetImage('assets/hello_habits.jpg',), width: 100),
           ])
     );
   }
