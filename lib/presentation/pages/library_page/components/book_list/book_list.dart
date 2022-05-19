@@ -8,11 +8,24 @@ class BookList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const BookListTile(
-      book: Book(
+    const books = [
+      Book(
           author: 'Fumio Sasaki',
           title: 'Hello Habits',
           imageUrl: 'assets/hello_habits.jpg'),
+      Book(
+          author: 'Fumio Sasaki',
+          title: 'Goodbye Things',
+          imageUrl: 'assets/goodbye_things.jpg')
+    ];
+    return Column(
+      children: books
+          .map((book) => Padding(
+              padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+              child: BookListTile(
+                book: book,
+              )))
+          .toList(),
     );
   }
 }
