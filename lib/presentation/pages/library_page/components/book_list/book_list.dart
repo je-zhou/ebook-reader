@@ -4,20 +4,12 @@ import 'package:test_drive/presentation/pages/library_page/components/book_list/
 import '../../../../../domain/book/book.dart';
 
 class BookList extends StatelessWidget {
-  const BookList({Key? key}) : super(key: key);
+  const BookList({Key? key, required this.books}) : super(key: key);
+
+  final List<Book> books;
 
   @override
   Widget build(BuildContext context) {
-    const books = [
-      Book(
-          author: 'Fumio Sasaki',
-          title: 'Hello Habits',
-          imageUrl: 'assets/hello_habits.jpg'),
-      Book(
-          author: 'Fumio Sasaki',
-          title: 'Goodbye Things',
-          imageUrl: 'assets/goodbye_things.jpg')
-    ];
     return Column(
       children: books
           .map((book) => Padding(
