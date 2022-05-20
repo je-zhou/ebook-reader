@@ -12,12 +12,19 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Directory _photoDir = Directory('/storage/emulated/0/EbookReader');
+    late Directory dir;
+    if (Theme.of(context).platform == TargetPlatform.android) {
+      dir = Directory('/storage/emulated/0/EbookReader');
+    } else {
+      dir = Directory('/storage/emulated/0/EbookReader');
+    }
+
+    provider.getApplicationDocumentsDirectory().then((value) => print(value));
 
     readDirectory() {
-      if (Directory(_photoDir.path).existsSync()) {
-        print(_photoDir.existsSync());
-        var list = _photoDir
+      if (Directory(dir.path).existsSync()) {
+        print(dir.existsSync());
+        var list = dir
             .listSync(followLinks: true, recursive: true)
             .map((e) => e)
             .toList();
