@@ -19,7 +19,31 @@ class BookView extends StatelessWidget {
       Book(
           author: 'Fumio Sasaki',
           title: 'Goodbye Things',
-          imageUrl: 'assets/goodbye_things.jpg')
+          imageUrl: 'assets/goodbye_things.jpg'),
+      Book(
+          author: 'Fumio Sasaki',
+          title: 'Hello Habits',
+          imageUrl: 'assets/hello_habits.jpg'),
+      Book(
+          author: 'Fumio Sasaki',
+          title: 'Goodbye Things',
+          imageUrl: 'assets/goodbye_things.jpg'),
+      Book(
+          author: 'Fumio Sasaki',
+          title: 'Hello Habits',
+          imageUrl: 'assets/hello_habits.jpg'),
+      Book(
+          author: 'Fumio Sasaki',
+          title: 'Hello Habits',
+          imageUrl: 'assets/hello_habits.jpg'),
+      Book(
+          author: 'Fumio Sasaki',
+          title: 'Hello Habits',
+          imageUrl: 'assets/hello_habits.jpg'),
+      Book(
+          author: 'Fumio Sasaki',
+          title: 'Hello Habits',
+          imageUrl: 'assets/hello_habits.jpg'),
     ];
     return BlocBuilder<BookViewCubit, BookViewState>(
       builder: (context, state) {
