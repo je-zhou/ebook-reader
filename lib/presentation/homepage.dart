@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:test_drive/presentation/pages/page_wrapper.dart';
 import 'package:path_provider/path_provider.dart' as provider;
@@ -49,30 +51,20 @@ class MyHomePage extends StatelessWidget {
             dir.listSync().where((element) => element.path.endsWith('.epub'));
 
         if (list.isNotEmpty) {
-          EpubViewer.open(
-            list.first.path,
-          );
+          print(list.first);
+          Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) =>
+                  EpubScreen.fromPath(filePath: list.first.path)));
         }
       } else {
         print("no directory found");
       }
     }
 
-    readDirectory();
-
-    runEpubViewer() {
-      EpubViewer.setConfig(
-          themeColor: Theme.of(context).primaryColor,
-          identifier: "iosBook",
-          scrollDirection: EpubScrollDirection.ALLDIRECTIONS,
-          allowSharing: true,
-          enableTts: true,
-          nightMode: true);
-
-      EpubViewer.open(
-        "${dir.path}/Fumio Sasaki - Hello, Habits-W. W. Norton & Company (2020).epub",
-      );
-    }
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      // add your code here.
+      readDirectory();
+    });
 
     // runEpubViewer()
 
