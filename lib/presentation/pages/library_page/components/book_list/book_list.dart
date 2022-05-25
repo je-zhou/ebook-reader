@@ -10,7 +10,7 @@ class BookList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: books
           .map((book) => Padding(
               padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
