@@ -30,8 +30,7 @@ class MyHomePage extends StatelessWidget {
       }
     }
 
-    getStoragePermission();
-    getExternalStoragePermission();
+    getStoragePermission().then((_) => getExternalStoragePermission());
 
     late Directory dir;
     if (Theme.of(context).platform == TargetPlatform.android) {
