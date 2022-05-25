@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:test_drive/presentation/pages/page_wrapper.dart';
 import 'package:path_provider/path_provider.dart' as provider;
 import 'package:epub_viewer/epub_viewer.dart';
@@ -13,9 +14,28 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    getStoragePermission() async {
+      var status = await Permission.storage.status;
+
+      if (!status.isGranted) {
+        await Permission.storage.request();
+      }
+    }
+
+    getExternalStoragePermission() async {
+      var status = await Permission.manageExternalStorage.status;
+
+      if (!status.isGranted) {
+        await Permission.manageExternalStorage.request();
+      }
+    }
+
+    getStoragePermission();
+    getExternalStoragePermission();
+
     late Directory dir;
     if (Theme.of(context).platform == TargetPlatform.android) {
-      dir = Directory('/storage/emulated/0/EbookReader');
+      dir = Directory('/storage/emulated/0/EBookReader/');
     } else {
       dir = Directory(
           '/Users/jerryzhou/Library/Developer/CoreSimulator/Devices/'
@@ -26,11 +46,14 @@ class MyHomePage extends StatelessWidget {
     readDirectory() {
       if (Directory(dir.path).existsSync()) {
         print(dir.existsSync());
-        var list = dir
-            .listSync(followLinks: true, recursive: true)
-            .map((e) => e)
-            .toList();
-        print(list);
+        var list =
+            dir.listSync().where((element) => element.path.endsWith('.epub'));
+
+        if (list.isNotEmpty) {
+          EpubViewer.open(
+            list.first.path,
+          );
+        }
       } else {
         print("no directory found");
       }

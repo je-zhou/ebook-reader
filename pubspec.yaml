@@ -37,6 +37,7 @@ dependencies:
   flutter_bloc: ^8.0.1
   freezed_annotation: ^1.1.0
   bloc_test: ^9.0.3
+  permission_handler: ^9.2.0
 
 
 dev_dependencies:
