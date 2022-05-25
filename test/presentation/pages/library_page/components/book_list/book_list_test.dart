@@ -6,29 +6,30 @@ import 'package:test_drive/presentation/pages/library_page/components/book_list/
 
 import '../../../../../helpers.dart';
 
+class BookListTestCase {
+  String testName;
+  List<Book> books;
+  Matcher findsN;
+
+  BookListTestCase(this.testName, this.books, this.findsN);
+}
+
 void main() {
   group('Book list contains book list tiles', () {
-    testWidgets('when no book', (WidgetTester tester) async {
-      final bookListTile = find.byType(BookListTile);
+    List<BookListTestCase> bookListTestCases = [
+      BookListTestCase("when no books", [], findsNothing),
+      BookListTestCase("when one book", [exampleBook], findsOneWidget),
+      BookListTestCase("when many books", List.filled(3, exampleBook), findsNWidgets(3))
+    ];
 
-      await tester.pumpWidget(const MaterialApp(home: BookList(books: [])));
+    for (var testCase in bookListTestCases) {
+      testWidgets(testCase.testName, (WidgetTester tester) async {
+        final bookListTile = find.byType(BookListTile);
 
-      expect(bookListTile, findsNothing);
-    });
-    testWidgets('when one book', (WidgetTester tester) async {
-      final bookListTile = find.byType(BookListTile);
+        await tester.pumpWidget(MaterialApp(home: BookList(books: testCase.books)));
 
-      await tester.pumpWidget(const MaterialApp(home: BookList(books: [exampleBook])));
-
-      expect(bookListTile, findsOneWidget);
-    });
-    testWidgets('when many books', (WidgetTester tester) async {
-      final bookListTile = find.byType(BookListTile);
-
-      await tester.pumpWidget(
-          MaterialApp(home: BookList(books: List.filled(3, exampleBook))));
-
-      expect(bookListTile, findsNWidgets(3));
-    });
+        expect(bookListTile, testCase.findsN);
+      });
+    }
   });
 }
