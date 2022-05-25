@@ -16,7 +16,7 @@ class BookListTile extends StatelessWidget {
               image: AssetImage(
                 book.imageUrl,
               ),
-              width: 100),
+          ),
           Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
