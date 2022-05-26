@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:test_drive/domain/book/book.dart';
 
@@ -8,12 +10,11 @@ class BookGridTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Image(
-          image: AssetImage(
-            book.imageUrl,
-          ),
-      ),
+    return Stack(
+      children: [
+        Image.memory(book.img)
+        // TODO:: Add Text Widgets and stuff to show Title/Author
+      ],
     );
   }
 }

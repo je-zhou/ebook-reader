@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import '../../../../../domain/book/book.dart';
@@ -12,11 +14,7 @@ class BookListTile extends StatelessWidget {
     return Container(
         height: 100,
         child: Row(children: [
-          Image(
-              image: AssetImage(
-                book.imageUrl,
-              ),
-          ),
+          Image.memory(book.img),
           Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,7 +22,8 @@ class BookListTile extends StatelessWidget {
                 Text(book.title,
                     style: const TextStyle(
                         fontSize: 14, fontWeight: FontWeight.bold)),
-                Text(book.author, style: const TextStyle(fontSize: 12)),
+                // TODO:: Seperate Multiple Authors by , e.g "Jerry Zhou, Alvin Zhao"
+                Text(book.authors.first, style: const TextStyle(fontSize: 12)),
               ]),
         ]));
   }

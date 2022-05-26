@@ -20,15 +20,19 @@ class _$BookTearOff {
   _Book call(
       {String? id,
       String? href,
+      String? description,
+      required String path,
       required String title,
-      required String author,
-      required String imageUrl}) {
+      required List<String> authors,
+      required Uint8List img}) {
     return _Book(
       id: id,
       href: href,
+      description: description,
+      path: path,
       title: title,
-      author: author,
-      imageUrl: imageUrl,
+      authors: authors,
+      img: img,
     );
   }
 }
@@ -40,9 +44,11 @@ const $Book = _$BookTearOff();
 mixin _$Book {
   String? get id => throw _privateConstructorUsedError;
   String? get href => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  String get path => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get author => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
+  List<String> get authors => throw _privateConstructorUsedError;
+  Uint8List get img => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BookCopyWith<Book> get copyWith => throw _privateConstructorUsedError;
@@ -53,7 +59,13 @@ abstract class $BookCopyWith<$Res> {
   factory $BookCopyWith(Book value, $Res Function(Book) then) =
       _$BookCopyWithImpl<$Res>;
   $Res call(
-      {String? id, String? href, String title, String author, String imageUrl});
+      {String? id,
+      String? href,
+      String? description,
+      String path,
+      String title,
+      List<String> authors,
+      Uint8List img});
 }
 
 /// @nodoc
@@ -68,9 +80,11 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? href = freezed,
+    Object? description = freezed,
+    Object? path = freezed,
     Object? title = freezed,
-    Object? author = freezed,
-    Object? imageUrl = freezed,
+    Object? authors = freezed,
+    Object? img = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -81,18 +95,26 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      path: path == freezed
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      author: author == freezed
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String,
-      imageUrl: imageUrl == freezed
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+      authors: authors == freezed
+          ? _value.authors
+          : authors // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      img: img == freezed
+          ? _value.img
+          : img // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
     ));
   }
 }
@@ -103,7 +125,13 @@ abstract class _$BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       __$BookCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id, String? href, String title, String author, String imageUrl});
+      {String? id,
+      String? href,
+      String? description,
+      String path,
+      String title,
+      List<String> authors,
+      Uint8List img});
 }
 
 /// @nodoc
@@ -119,9 +147,11 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? href = freezed,
+    Object? description = freezed,
+    Object? path = freezed,
     Object? title = freezed,
-    Object? author = freezed,
-    Object? imageUrl = freezed,
+    Object? authors = freezed,
+    Object? img = freezed,
   }) {
     return _then(_Book(
       id: id == freezed
@@ -132,18 +162,26 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
           ? _value.href
           : href // ignore: cast_nullable_to_non_nullable
               as String?,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      path: path == freezed
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
       title: title == freezed
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
-      author: author == freezed
-          ? _value.author
-          : author // ignore: cast_nullable_to_non_nullable
-              as String,
-      imageUrl: imageUrl == freezed
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
-              as String,
+      authors: authors == freezed
+          ? _value.authors
+          : authors // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      img: img == freezed
+          ? _value.img
+          : img // ignore: cast_nullable_to_non_nullable
+              as Uint8List,
     ));
   }
 }
@@ -154,24 +192,30 @@ class _$_Book implements _Book {
   const _$_Book(
       {this.id,
       this.href,
+      this.description,
+      required this.path,
       required this.title,
-      required this.author,
-      required this.imageUrl});
+      required this.authors,
+      required this.img});
 
   @override
   final String? id;
   @override
   final String? href;
   @override
+  final String? description;
+  @override
+  final String path;
+  @override
   final String title;
   @override
-  final String author;
+  final List<String> authors;
   @override
-  final String imageUrl;
+  final Uint8List img;
 
   @override
   String toString() {
-    return 'Book(id: $id, href: $href, title: $title, author: $author, imageUrl: $imageUrl)';
+    return 'Book(id: $id, href: $href, description: $description, path: $path, title: $title, authors: $authors, img: $img)';
   }
 
   @override
@@ -181,9 +225,12 @@ class _$_Book implements _Book {
             other is _Book &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.href, href) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.path, path) &&
             const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.author, author) &&
-            const DeepCollectionEquality().equals(other.imageUrl, imageUrl));
+            const DeepCollectionEquality().equals(other.authors, authors) &&
+            const DeepCollectionEquality().equals(other.img, img));
   }
 
   @override
@@ -191,9 +238,11 @@ class _$_Book implements _Book {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(href),
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(path),
       const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(author),
-      const DeepCollectionEquality().hash(imageUrl));
+      const DeepCollectionEquality().hash(authors),
+      const DeepCollectionEquality().hash(img));
 
   @JsonKey(ignore: true)
   @override
@@ -205,20 +254,26 @@ abstract class _Book implements Book {
   const factory _Book(
       {String? id,
       String? href,
+      String? description,
+      required String path,
       required String title,
-      required String author,
-      required String imageUrl}) = _$_Book;
+      required List<String> authors,
+      required Uint8List img}) = _$_Book;
 
   @override
   String? get id;
   @override
   String? get href;
   @override
+  String? get description;
+  @override
+  String get path;
+  @override
   String get title;
   @override
-  String get author;
+  List<String> get authors;
   @override
-  String get imageUrl;
+  Uint8List get img;
   @override
   @JsonKey(ignore: true)
   _$BookCopyWith<_Book> get copyWith => throw _privateConstructorUsedError;
