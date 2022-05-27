@@ -18,7 +18,7 @@ void main() {
       final bookListTile = find.byType(BookGridTile);
 
       await tester
-          .pumpWidget(const MaterialApp(home: BookGrid(books: [exampleBook])));
+          .pumpWidget(MaterialApp(home: BookGrid(books: [exampleBook])));
 
       expect(bookListTile, findsOneWidget);
     });

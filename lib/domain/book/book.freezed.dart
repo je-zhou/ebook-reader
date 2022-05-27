@@ -189,7 +189,7 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_Book implements _Book {
-  const _$_Book(
+  _$_Book(
       {this.id,
       this.href,
       this.description,
@@ -251,7 +251,7 @@ class _$_Book implements _Book {
 }
 
 abstract class _Book implements Book {
-  const factory _Book(
+  factory _Book(
       {String? id,
       String? href,
       String? description,

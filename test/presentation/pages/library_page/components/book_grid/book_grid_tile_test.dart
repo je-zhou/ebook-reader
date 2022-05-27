@@ -7,9 +7,9 @@ import '../../../../../helpers.dart';
 void main() {
   testWidgets('Book grid tile shows cover',
       (WidgetTester tester) async {
-    final image = find.image(AssetImage(exampleBook.imageUrl));
+    final image = find.byType(Image);
 
-    await tester.pumpWidget(const MaterialApp(home: BookGridTile(book: exampleBook)));
+    await tester.pumpWidget(MaterialApp(home: BookGridTile(book: exampleBook)));
 
     expect(image, findsOneWidget);
   });

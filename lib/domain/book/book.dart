@@ -11,7 +11,7 @@ part 'book.freezed.dart';
 
 @freezed
 class Book with _$Book {
-  const factory Book({
+  factory Book({
     String? id,
     String? href,
     String? description,

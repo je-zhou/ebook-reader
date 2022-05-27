@@ -9,10 +9,10 @@ void main() {
   testWidgets('Book list tile contains information',
       (WidgetTester tester) async {
     final titleText = find.text(exampleBook.title);
-    final authorText = find.text(exampleBook.author);
-    final image = find.image(AssetImage(exampleBook.imageUrl));
+    final authorText = find.text(exampleBook.authors.first);
+    final image = find.byType(Image);
 
-    await tester.pumpWidget(const MaterialApp(home: BookListTile(book: exampleBook)));
+    await tester.pumpWidget(MaterialApp(home: BookListTile(book: exampleBook)));
 
     expect(titleText, findsOneWidget);
     expect(authorText, findsOneWidget);
