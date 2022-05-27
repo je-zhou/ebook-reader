@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:test_drive/application/book_view/book_view_cubit.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:test_drive/application/book_view/book_view_cubit.dart';
 import 'package:test_drive/presentation/pages/library_page/components/book_grid/book_grid.dart';
 import 'package:test_drive/presentation/pages/library_page/components/book_list/book_list.dart';
 import 'package:test_drive/presentation/pages/library_page/components/book_view.dart';
@@ -57,4 +57,26 @@ void main() {
       expect(bookView, findsOneWidget);
     });
   }, skip: "FutureBuilder broke this test");
+
+  group("Shows loading spinner", () {
+    testWidgets('on list view', (WidgetTester tester) async {
+      arrangeStateIsInListView();
+
+      final loadingSpinner = find.byType(CircularProgressIndicator);
+
+      await tester.pumpWidget(createWidgetUnderTest());
+
+      expect(loadingSpinner, findsOneWidget);
+    });
+
+    testWidgets('on grid view', (WidgetTester tester) async {
+      arrangeStateIsInGridView();
+
+      final loadingSpinner = find.byType(CircularProgressIndicator);
+
+      await tester.pumpWidget(createWidgetUnderTest());
+
+      expect(loadingSpinner, findsOneWidget);
+    });
+  });
 }
