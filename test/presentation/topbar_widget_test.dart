@@ -55,6 +55,18 @@ void main() {
   void arrangeStateIsInListView() => when(() => mockBookViewCubit.state)
       .thenReturn(BookViewState.initial().copyWith(isGridView: false));
 
+  void testIcons(List<IconData> pageIcons) {
+    for (IconData icon in allUsedIcons) {
+      final iconFinder = find.byIcon(icon);
+
+      if (pageIcons.contains(icon)) {
+        expect(iconFinder, findsOneWidget);
+      } else {
+        expect(iconFinder, findsNothing);
+      }
+    }
+  }
+
   group('Topbar should render correct page name', () {
     testWidgets('Library title when in library state',
         (WidgetTester tester) async {
@@ -104,15 +116,7 @@ void main() {
         FontAwesomeIcons.list
       ];
 
-      for (IconData icon in allUsedIcons) {
-        final iconFinder = find.byIcon(icon);
-
-        if (libraryIcons.contains(icon)) {
-          expect(iconFinder, findsOneWidget);
-        } else {
-          expect(iconFinder, findsNothing);
-        }
-      }
+      testIcons(libraryIcons);
     });
     testWidgets('Library icons are correct when in List View State',
         (WidgetTester tester) async {
@@ -127,15 +131,7 @@ void main() {
         FontAwesomeIcons.borderAll,
       ];
 
-      for (IconData icon in allUsedIcons) {
-        final iconFinder = find.byIcon(icon);
-
-        if (libraryIcons.contains(icon)) {
-          expect(iconFinder, findsOneWidget);
-        } else {
-          expect(iconFinder, findsNothing);
-        }
-      }
+      testIcons(libraryIcons);
     });
 
     testWidgets('Quotes icons are correct', (WidgetTester tester) async {
@@ -149,15 +145,7 @@ void main() {
         FontAwesomeIcons.filter,
       ];
 
-      for (IconData icon in allUsedIcons) {
-        final iconFinder = find.byIcon(icon);
-
-        if (quotesIcons.contains(icon)) {
-          expect(iconFinder, findsOneWidget);
-        } else {
-          expect(iconFinder, findsNothing);
-        }
-      }
+      testIcons(quotesIcons);
     });
     testWidgets('Settings icons are correct', (WidgetTester tester) async {
       arrangePageIsSettings();
@@ -169,15 +157,7 @@ void main() {
         FontAwesomeIcons.magnifyingGlass,
       ];
 
-      for (IconData icon in allUsedIcons) {
-        final iconFinder = find.byIcon(icon);
-
-        if (settingsIcons.contains(icon)) {
-          expect(iconFinder, findsOneWidget);
-        } else {
-          expect(iconFinder, findsNothing);
-        }
-      }
+      testIcons(settingsIcons);
     });
   });
 }
