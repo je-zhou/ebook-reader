@@ -9,10 +9,6 @@ class BookRepository {
   TargetPlatform platform;
   BookRepository(this.platform);
 
-  Future<List<Book>> getBookList() async {
-    return [];
-  }
-
   List<Directory> getDirectories() {
     List<Directory> androidDir = [
       Directory('/storage/emulated/0/EBookReader/'),
@@ -27,7 +23,7 @@ class BookRepository {
     return platform == TargetPlatform.android ? androidDir : iOSDir;
   }
 
-  Future<List<Book>> readDirectory(String directoryPath) async {
+  Future<List<Book>> getBooks() async {
     await getStoragePermission();
     await getExternalStoragePermission();
 
