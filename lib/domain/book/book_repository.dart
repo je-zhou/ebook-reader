@@ -42,9 +42,7 @@ class BookRepository {
     }
 
     List<Book> books = await Stream.fromIterable(files).asyncMap((file) {
-      late Book book;
-      Book.bookFromSupportedFile(file).then((value) => book = value);
-      return book;
+      return Book.bookFromSupportedFile(file);
     }).toList();
 
     return books;
