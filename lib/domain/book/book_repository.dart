@@ -3,11 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:universal_io/io.dart';
-
-import '../../../../utils.dart';
-
-import 'dart:typed_data';
-
 import 'book.dart';
 
 class BookRepository {
@@ -32,31 +27,31 @@ class BookRepository {
     return platform == TargetPlatform.android ? androidDir : iOSDir;
   }
 
-  //   getStoragePermission().then((_) => getExternalStoragePermission());
-  // Directory dir = getEbookDirectory(Theme.of(context).platform);
-
   Future<List<Book>> readDirectory(String directoryPath) async {
     await getStoragePermission();
     await getExternalStoragePermission();
 
-    // if (Directory(directoryPath).existsSync()) {
-    //   List<FileSystemEntity> list = dir
-    //       .listSync()
-    //       .where((element) => element.path.endsWith('.epub'))
-    //       .toList();
+    List<Directory> directories = getDirectories();
+    List<FileSystemEntity> files = [];
 
-    // TODO:: Implement logic into a bloc
-    // List<Book> books = list.map((file) {
-    //   late Book book;
-    //   Book.bookFromSupportedFile(file).then((value) => book = value);
-    //   return book;
-    // }).toList();
+    for (var i = 0; i < directories.length; i++) {
+      Directory dir = directories[i];
 
-    //   return [];
-    // } else {
-    //   print("no directory found");
-    // }
-    return [];
+      if (!dir.existsSync()) continue;
+
+      Iterable<FileSystemEntity> dirFiles =
+          dir.listSync().where((file) => file.path.endsWith('.epub'));
+
+      files.addAll(dirFiles);
+    }
+
+    List<Book> books = await Stream.fromIterable(files).asyncMap((file) {
+      late Book book;
+      Book.bookFromSupportedFile(file).then((value) => book = value);
+      return book;
+    }).toList();
+
+    return books;
   }
 
   getStoragePermission() async {
