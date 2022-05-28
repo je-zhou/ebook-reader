@@ -35,7 +35,7 @@ void main() {
 
   void arrangeBookViewState() {
     when(() => mockBookViewCubit.state)
-        .thenReturn(const BookViewState(isGridView: true, searchBy: ''));
+        .thenReturn(const BookViewState(isGridView: true, searchBy: '', isSearch: false));
   }
 
   Widget createWidgetUnderTest() {

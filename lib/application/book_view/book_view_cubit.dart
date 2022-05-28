@@ -18,4 +18,8 @@ class BookViewCubit extends Cubit<BookViewState> {
   void clearSearch() {
     emit(state.copyWith(searchBy: ""));
   }
+
+  void toggleIsSearch() {
+    emit(state.copyWith(isSearch: !state.isSearch));
+  }
 }

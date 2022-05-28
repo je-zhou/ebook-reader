@@ -12,55 +12,44 @@ class Topbar extends StatelessWidget with PreferredSizeWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PageSelectorCubit, PageSelectorState>(
       builder: (context, pageSelectorState) {
-        late String title;
-        late List<IconData> icons;
-
-        pageSelectorState.map(library: (_) {
-          title = 'Library';
-          icons = [
-            FontAwesomeIcons.magnifyingGlass,
-            FontAwesomeIcons.filter,
-            // Grid/List icon added seperately since depends on BookViewState
-          ];
-        }, quotes: (_) {
-          title = 'Quotes';
-          icons = [
-            FontAwesomeIcons.magnifyingGlass,
-            FontAwesomeIcons.filter,
-          ];
-        }, settings: (_) {
-          title = 'Settings';
-          icons = [
-            FontAwesomeIcons.magnifyingGlass,
-          ];
-        });
-
         return BlocBuilder<BookViewCubit, BookViewState>(
           builder: (context, bookViewState) {
-            List<Widget> iconButtons = icons
-                .map((IconData icon) => Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8),
-                      child: Icon(icon),
-                    ))
-                .toList();
-
-            pageSelectorState.mapOrNull(
-              library: (_) => iconButtons.add(
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: GestureDetector(
-                    key: const Key('Book View Toggle'),
-                    onTap: () => context.read<BookViewCubit>().toggleBookView(),
-                    child: Icon(bookViewState.isGridView
-                        ? FontAwesomeIcons.list
-                        : FontAwesomeIcons.borderAll),
-                  ),
-                ),
+            final Widget _gridOrListButton = Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: IconButton(
+                onPressed: () => context.read<BookViewCubit>().toggleBookView(),
+                icon: Icon(bookViewState.isGridView
+                    ? FontAwesomeIcons.list
+                    : FontAwesomeIcons.borderAll),
               ),
             );
 
+            final Widget _searchButton = Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: IconButton(
+                    onPressed: () =>
+                        context.read<BookViewCubit>().toggleIsSearch(),
+                    icon: const Icon(FontAwesomeIcons.magnifyingGlass)));
+
+            final Widget _filterButton = Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: IconButton(
+                    onPressed: () =>
+                        print("filter pressed"),
+                    icon: const Icon(FontAwesomeIcons.filter)));
+
+            List<Widget> iconButtons = pageSelectorState.map(
+              library: (_) => [_searchButton, _filterButton, _gridOrListButton],
+              quotes: (_) => [_searchButton, _filterButton],
+              settings: (_) => [_searchButton]
+            );
+
+            // lol
+            String title = pageSelectorState.toString().split('.').last.replaceAll('()', '');
+            title = title.substring(0, 1).toUpperCase() + title.substring(1);
+
             return AppBar(
-              title: Text(title),
+              title: bookViewState.isSearch ? const TextField() : Text(title),
               actions: iconButtons,
             );
           },

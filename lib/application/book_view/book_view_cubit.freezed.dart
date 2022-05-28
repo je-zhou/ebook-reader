@@ -17,10 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$BookViewStateTearOff {
   const _$BookViewStateTearOff();
 
-  _BookViewState call({required bool isGridView, required String searchBy}) {
+  _BookViewState call(
+      {required bool isGridView,
+      required String searchBy,
+      required bool isSearch}) {
     return _BookViewState(
       isGridView: isGridView,
       searchBy: searchBy,
+      isSearch: isSearch,
     );
   }
 }
@@ -32,6 +36,7 @@ const $BookViewState = _$BookViewStateTearOff();
 mixin _$BookViewState {
   bool get isGridView => throw _privateConstructorUsedError;
   String get searchBy => throw _privateConstructorUsedError;
+  bool get isSearch => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BookViewStateCopyWith<BookViewState> get copyWith =>
@@ -43,7 +48,7 @@ abstract class $BookViewStateCopyWith<$Res> {
   factory $BookViewStateCopyWith(
           BookViewState value, $Res Function(BookViewState) then) =
       _$BookViewStateCopyWithImpl<$Res>;
-  $Res call({bool isGridView, String searchBy});
+  $Res call({bool isGridView, String searchBy, bool isSearch});
 }
 
 /// @nodoc
@@ -59,6 +64,7 @@ class _$BookViewStateCopyWithImpl<$Res>
   $Res call({
     Object? isGridView = freezed,
     Object? searchBy = freezed,
+    Object? isSearch = freezed,
   }) {
     return _then(_value.copyWith(
       isGridView: isGridView == freezed
@@ -69,6 +75,10 @@ class _$BookViewStateCopyWithImpl<$Res>
           ? _value.searchBy
           : searchBy // ignore: cast_nullable_to_non_nullable
               as String,
+      isSearch: isSearch == freezed
+          ? _value.isSearch
+          : isSearch // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -80,7 +90,7 @@ abstract class _$BookViewStateCopyWith<$Res>
           _BookViewState value, $Res Function(_BookViewState) then) =
       __$BookViewStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isGridView, String searchBy});
+  $Res call({bool isGridView, String searchBy, bool isSearch});
 }
 
 /// @nodoc
@@ -98,6 +108,7 @@ class __$BookViewStateCopyWithImpl<$Res>
   $Res call({
     Object? isGridView = freezed,
     Object? searchBy = freezed,
+    Object? isSearch = freezed,
   }) {
     return _then(_BookViewState(
       isGridView: isGridView == freezed
@@ -108,6 +119,10 @@ class __$BookViewStateCopyWithImpl<$Res>
           ? _value.searchBy
           : searchBy // ignore: cast_nullable_to_non_nullable
               as String,
+      isSearch: isSearch == freezed
+          ? _value.isSearch
+          : isSearch // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -115,16 +130,21 @@ class __$BookViewStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_BookViewState implements _BookViewState {
-  const _$_BookViewState({required this.isGridView, required this.searchBy});
+  const _$_BookViewState(
+      {required this.isGridView,
+      required this.searchBy,
+      required this.isSearch});
 
   @override
   final bool isGridView;
   @override
   final String searchBy;
+  @override
+  final bool isSearch;
 
   @override
   String toString() {
-    return 'BookViewState(isGridView: $isGridView, searchBy: $searchBy)';
+    return 'BookViewState(isGridView: $isGridView, searchBy: $searchBy, isSearch: $isSearch)';
   }
 
   @override
@@ -134,14 +154,16 @@ class _$_BookViewState implements _BookViewState {
             other is _BookViewState &&
             const DeepCollectionEquality()
                 .equals(other.isGridView, isGridView) &&
-            const DeepCollectionEquality().equals(other.searchBy, searchBy));
+            const DeepCollectionEquality().equals(other.searchBy, searchBy) &&
+            const DeepCollectionEquality().equals(other.isSearch, isSearch));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(isGridView),
-      const DeepCollectionEquality().hash(searchBy));
+      const DeepCollectionEquality().hash(searchBy),
+      const DeepCollectionEquality().hash(isSearch));
 
   @JsonKey(ignore: true)
   @override
@@ -151,12 +173,16 @@ class _$_BookViewState implements _BookViewState {
 
 abstract class _BookViewState implements BookViewState {
   const factory _BookViewState(
-      {required bool isGridView, required String searchBy}) = _$_BookViewState;
+      {required bool isGridView,
+      required String searchBy,
+      required bool isSearch}) = _$_BookViewState;
 
   @override
   bool get isGridView;
   @override
   String get searchBy;
+  @override
+  bool get isSearch;
   @override
   @JsonKey(ignore: true)
   _$BookViewStateCopyWith<_BookViewState> get copyWith =>

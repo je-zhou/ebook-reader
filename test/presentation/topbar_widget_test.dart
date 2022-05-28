@@ -86,8 +86,8 @@ void main() {
 
       await tester.pumpWidget(createWidgetUnderTest());
 
-      final libraryTitle = find.text('Quotes');
-      expect(libraryTitle, findsOneWidget);
+      final quotesTitle = find.text('Quotes');
+      expect(quotesTitle, findsOneWidget);
     });
 
     testWidgets('Settings title when in settings state',
@@ -97,8 +97,8 @@ void main() {
 
       await tester.pumpWidget(createWidgetUnderTest());
 
-      final libraryTitle = find.text('Settings');
-      expect(libraryTitle, findsOneWidget);
+      final settingsTitle = find.text('Settings');
+      expect(settingsTitle, findsOneWidget);
     });
   });
 
