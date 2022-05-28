@@ -3,10 +3,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:universal_io/io.dart';
+
 import 'book.dart';
 
 class BookRepository {
   TargetPlatform platform;
+
   BookRepository(this.platform);
 
   List<Directory> getDirectories() {
@@ -28,22 +30,15 @@ class BookRepository {
     await getExternalStoragePermission();
 
     List<Directory> directories = getDirectories();
-    List<FileSystemEntity> files = [];
+    List<FileSystemEntity> files = directories.fold([], (allBooks, dir) {
+      if (!dir.existsSync()) return allBooks;
+      final books = dir.listSync().where((file) => file.path.endsWith('.epub'));
+      return allBooks.followedBy(books).toList();
+    });
 
-    for (var i = 0; i < directories.length; i++) {
-      Directory dir = directories[i];
-
-      if (!dir.existsSync()) continue;
-
-      Iterable<FileSystemEntity> dirFiles =
-          dir.listSync().where((file) => file.path.endsWith('.epub'));
-
-      files.addAll(dirFiles);
-    }
-
-    List<Book> books = await Stream.fromIterable(files).asyncMap((file) =>
-        Book.bookFromSupportedFile(file)
-    ).toList();
+    List<Book> books = await Stream.fromIterable(files)
+        .asyncMap((file) => Book.bookFromSupportedFile(file))
+        .toList();
 
     return books;
   }
