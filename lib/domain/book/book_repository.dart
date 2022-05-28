@@ -41,9 +41,9 @@ class BookRepository {
       files.addAll(dirFiles);
     }
 
-    List<Book> books = await Stream.fromIterable(files).asyncMap((file) {
-      return Book.bookFromSupportedFile(file);
-    }).toList();
+    List<Book> books = await Stream.fromIterable(files).asyncMap((file) =>
+        Book.bookFromSupportedFile(file)
+    ).toList();
 
     return books;
   }
