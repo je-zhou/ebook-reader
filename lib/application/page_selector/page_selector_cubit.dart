@@ -3,8 +3,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'page_selector_cubit.freezed.dart';
 
-part 'page_selector_state.dart';
-
 class PageSelectorCubit extends Cubit<PageSelectorState> {
   PageSelectorCubit() : super(const PageSelectorState.library());
 
@@ -33,4 +31,11 @@ class PageSelectorCubit extends Cubit<PageSelectorState> {
   navigateToQuotes() => emit(const PageSelectorState.quotes());
 
   navigateToSettings() => emit(const PageSelectorState.settings());
+}
+
+@freezed
+class PageSelectorState with _$PageSelectorState {
+  const factory PageSelectorState.library() = _Library;
+  const factory PageSelectorState.settings() = _Settings;
+  const factory PageSelectorState.quotes() = _Quotes;
 }

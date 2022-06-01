@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'book_view_state.dart';
 part 'book_view_cubit.freezed.dart';
 
 class BookViewCubit extends Cubit<BookViewState> {
@@ -22,4 +21,18 @@ class BookViewCubit extends Cubit<BookViewState> {
   void toggleIsSearch() {
     emit(state.copyWith(isSearch: !state.isSearch));
   }
+}
+
+@freezed
+class BookViewState with _$BookViewState {
+  const factory BookViewState({
+    required bool isGridView,
+    required String searchBy,
+    required bool isSearch,
+    //TODO:: Create a filter settings class
+    //required FilterSettings filterSettings,
+  }) = _BookViewState;
+
+  factory BookViewState.initial() =>
+      const BookViewState(isGridView: false, searchBy: "", isSearch: false);
 }
