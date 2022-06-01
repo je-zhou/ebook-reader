@@ -1,4 +1,3 @@
-import 'dart:ffi';
 import 'dart:io';
 import 'dart:typed_data';
 
@@ -27,6 +26,7 @@ class Book with _$Book {
     late PubBox? pubBox;
     await parser.parse(file.path).then((value) => pubBox = value);
     Publication pub = pubBox!.publication;
+    print(pub);
 
     pub.metadata.authors.map((a) => a.name).toList();
 
