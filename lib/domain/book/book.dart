@@ -5,6 +5,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:mno_shared/publication.dart';
 import 'package:mno_streamer/parser.dart';
 import 'package:universal_io/io.dart';
+import 'package:path/path.dart';
 
 part 'book.freezed.dart';
 
@@ -14,6 +15,8 @@ class Book with _$Book {
     String? id,
     String? href,
     String? description,
+    int? numOfChapters,
+    required String fileType,
     required String path,
     required String title,
     required List<String> authors,
@@ -26,7 +29,6 @@ class Book with _$Book {
     late PubBox? pubBox;
     await parser.parse(file.path).then((value) => pubBox = value);
     Publication pub = pubBox!.publication;
-    print(pub);
 
     pub.metadata.authors.map((a) => a.name).toList();
 
@@ -42,7 +44,9 @@ class Book with _$Book {
         authors: pub.metadata.authors.map((a) => a.name).toList(),
         title: pub.metadata.title,
         description: pub.metadata.description,
+        numOfChapters: pub.manifest.tableOfContents.length,
         path: file.path,
-        img: img);
+        img: img,
+        fileType: extension(file.path));
   }
 }

@@ -21,6 +21,8 @@ class _$BookTearOff {
       {String? id,
       String? href,
       String? description,
+      int? numOfChapters,
+      required String fileType,
       required String path,
       required String title,
       required List<String> authors,
@@ -29,6 +31,8 @@ class _$BookTearOff {
       id: id,
       href: href,
       description: description,
+      numOfChapters: numOfChapters,
+      fileType: fileType,
       path: path,
       title: title,
       authors: authors,
@@ -45,6 +49,8 @@ mixin _$Book {
   String? get id => throw _privateConstructorUsedError;
   String? get href => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  int? get numOfChapters => throw _privateConstructorUsedError;
+  String get fileType => throw _privateConstructorUsedError;
   String get path => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   List<String> get authors => throw _privateConstructorUsedError;
@@ -62,6 +68,8 @@ abstract class $BookCopyWith<$Res> {
       {String? id,
       String? href,
       String? description,
+      int? numOfChapters,
+      String fileType,
       String path,
       String title,
       List<String> authors,
@@ -81,6 +89,8 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
     Object? id = freezed,
     Object? href = freezed,
     Object? description = freezed,
+    Object? numOfChapters = freezed,
+    Object? fileType = freezed,
     Object? path = freezed,
     Object? title = freezed,
     Object? authors = freezed,
@@ -99,6 +109,14 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      numOfChapters: numOfChapters == freezed
+          ? _value.numOfChapters
+          : numOfChapters // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileType: fileType == freezed
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as String,
       path: path == freezed
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
@@ -128,6 +146,8 @@ abstract class _$BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       {String? id,
       String? href,
       String? description,
+      int? numOfChapters,
+      String fileType,
       String path,
       String title,
       List<String> authors,
@@ -148,6 +168,8 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
     Object? id = freezed,
     Object? href = freezed,
     Object? description = freezed,
+    Object? numOfChapters = freezed,
+    Object? fileType = freezed,
     Object? path = freezed,
     Object? title = freezed,
     Object? authors = freezed,
@@ -166,6 +188,14 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String?,
+      numOfChapters: numOfChapters == freezed
+          ? _value.numOfChapters
+          : numOfChapters // ignore: cast_nullable_to_non_nullable
+              as int?,
+      fileType: fileType == freezed
+          ? _value.fileType
+          : fileType // ignore: cast_nullable_to_non_nullable
+              as String,
       path: path == freezed
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
@@ -193,6 +223,8 @@ class _$_Book implements _Book {
       {this.id,
       this.href,
       this.description,
+      this.numOfChapters,
+      required this.fileType,
       required this.path,
       required this.title,
       required this.authors,
@@ -205,6 +237,10 @@ class _$_Book implements _Book {
   @override
   final String? description;
   @override
+  final int? numOfChapters;
+  @override
+  final String fileType;
+  @override
   final String path;
   @override
   final String title;
@@ -215,7 +251,7 @@ class _$_Book implements _Book {
 
   @override
   String toString() {
-    return 'Book(id: $id, href: $href, description: $description, path: $path, title: $title, authors: $authors, img: $img)';
+    return 'Book(id: $id, href: $href, description: $description, numOfChapters: $numOfChapters, fileType: $fileType, path: $path, title: $title, authors: $authors, img: $img)';
   }
 
   @override
@@ -227,6 +263,9 @@ class _$_Book implements _Book {
             const DeepCollectionEquality().equals(other.href, href) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
+            const DeepCollectionEquality()
+                .equals(other.numOfChapters, numOfChapters) &&
+            const DeepCollectionEquality().equals(other.fileType, fileType) &&
             const DeepCollectionEquality().equals(other.path, path) &&
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality().equals(other.authors, authors) &&
@@ -239,6 +278,8 @@ class _$_Book implements _Book {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(href),
       const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(numOfChapters),
+      const DeepCollectionEquality().hash(fileType),
       const DeepCollectionEquality().hash(path),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(authors),
@@ -255,6 +296,8 @@ abstract class _Book implements Book {
       {String? id,
       String? href,
       String? description,
+      int? numOfChapters,
+      required String fileType,
       required String path,
       required String title,
       required List<String> authors,
@@ -266,6 +309,10 @@ abstract class _Book implements Book {
   String? get href;
   @override
   String? get description;
+  @override
+  int? get numOfChapters;
+  @override
+  String get fileType;
   @override
   String get path;
   @override
