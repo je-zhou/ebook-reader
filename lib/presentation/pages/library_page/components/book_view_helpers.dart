@@ -5,6 +5,9 @@ void openBook(BuildContext context, String path) {
   Navigator.push(
     context,
     MaterialPageRoute(
-        builder: (context) => EpubScreen.fromPath(filePath: path)),
+      // the cfi cant be null, but empty string is ok
+      // the idref is the path minus the server
+      // not sure how to solve
+        builder: (context) => EpubScreen.fromPath(filePath: path, location:  '{"cfi":"","idref":"Chapter03"}',)),
   );
 }
