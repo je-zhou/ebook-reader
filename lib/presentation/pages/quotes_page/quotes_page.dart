@@ -146,12 +146,12 @@ class QuotesPage extends StatelessWidget {
     var book = Book(
         fileType: 'epub',
         path: '..',
-        title: 'Atomic Habits',
+        title: 'Atomic Habits Hello Habits Goodbyey',
         authors: [''],
         img: Uint8List.fromList(kTransparentImage));
-    return Column(children: [
+    return ListView(children: [
       QuoteBubble(quote: quote),
-      BookQuotes(book: book, quotes: [quote, quote])
+      BookQuotes(book: book, quotes: [quote, quote, quote, quote, quote])
     ]);
   }
 }

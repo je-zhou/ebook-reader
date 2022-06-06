@@ -15,13 +15,16 @@ class BookQuotes extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
+    double cWidth = MediaQuery.of(context).size.width * 0.2;
+    return Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
       Padding(
-          padding: const EdgeInsets.fromLTRB(25, 0, 0, 0),
-          child: Column(children: [
-            BookCover(cover: book.img),
-            Text(book.title)
-          ])),
+          padding: const EdgeInsets.fromLTRB(25, 25, 0, 0),
+          child: Container(
+              width: cWidth,
+              child: Column(
+                  children: [BookCover(cover: book.img), Text(book.title)]))),
       Flexible(
           child: Column(
               children:
@@ -43,8 +46,7 @@ class BookCover extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(4),
-        image: DecorationImage(
-            image: MemoryImage(cover), fit: BoxFit.cover),
+        image: DecorationImage(image: MemoryImage(cover), fit: BoxFit.cover),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
