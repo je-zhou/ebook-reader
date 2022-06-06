@@ -9,9 +9,9 @@ class QuotesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      QuoteBubble(quote: Quote("Hell", "wolrd")),
-      QuoteBubble(quote: Quote("More Qutoes", "wolrd")),
-      QuoteBubble(quote: Quote("Something", "wolrd")),
+      QuoteBubble(quote: Quote("Success isn’t found in the eyes of others: buying things you don’t need, with money you don’t have, to impress people you won’t know in 20 years’ time.", "Chapter 1 “Domino your debts”")),
+      QuoteBubble(quote: Quote("Success isn’t found in the eyes of others: buying things you don’t need, with money you don’t have, to impress people you won’t know in 20 years’ time.", "Chapter 2 “Domino your debts”")),
+      QuoteBubble(quote: Quote("Success isn’t found in the eyes of others: buying things you don’t need, with money you don’t have, to impress people you won’t know in 20 years’ time.", "Chapter 3 “Domino your debts”")),
     ]);
   }
 }

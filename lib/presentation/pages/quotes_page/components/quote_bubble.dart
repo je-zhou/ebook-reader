@@ -9,12 +9,25 @@ class QuoteBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(children: [
-      Text(
-        quote.quote,
-        style: const TextStyle(backgroundColor: Color.fromRGBO(0, 100, 200, 0.7)),
-      ),
-      Text(quote.source)
-    ]);
+    return Padding(
+        padding: const EdgeInsets.fromLTRB(25, 20, 25, 5),
+        child: Column(children: [
+          DecoratedBox(
+              decoration: const BoxDecoration(color: Colors.lightBlueAccent, borderRadius: BorderRadius.all(Radius.circular(5))),
+              child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text(
+                    quote.quote,
+                    style: const TextStyle(
+                        backgroundColor: Colors.lightBlueAccent),
+                  ))),
+          Align(
+            child: Padding(
+              child: Text(quote.source),
+              padding: const EdgeInsets.symmetric(vertical: 5),
+            ),
+            alignment: Alignment.topRight,
+          )
+        ]));
   }
 }
