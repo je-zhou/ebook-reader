@@ -16,11 +16,22 @@ import 'package:mno_streamer/parser.dart';
 
 class EpubScreen extends BookScreen {
   final String? location;
-  const EpubScreen({Key? key, required FileAsset asset, this.location})
+  final Function? callback;
+  const EpubScreen(
+      {Key? key, required FileAsset asset, this.location, this.callback})
       : super(key: key, asset: asset);
 
-  factory EpubScreen.fromPath({Key? key, required String filePath, String? location}) {
-    return EpubScreen(key: key, asset: FileAsset(File(filePath)), location: location);
+  factory EpubScreen.fromPath(
+      {Key? key,
+      required String filePath,
+      String? location,
+      Function? callback}) {
+    return EpubScreen(
+      key: key,
+      asset: FileAsset(File(filePath)),
+      location: location,
+      callback: callback,
+    );
   }
 
   @override
@@ -36,6 +47,14 @@ class EpubScreenState extends BookScreenState<EpubScreen, EpubController> {
     super.initState();
     _viewerSettingsBloc = ViewerSettingsBloc(EpubReaderState("", 100));
     _readerThemeBloc = ReaderThemeBloc(ReaderThemeConfig.defaultTheme);
+    publicationController.currentSpineItemBloc.stream.listen((event) {
+      if (widget.callback != null) {
+        String? spineItemId =
+            publicationController.publication.pageLinks[event.spineItemIdx].id;
+
+        widget.callback!('CURRENTLY ON: ' '$spineItemId');
+      }
+    });
   }
 
   @override
@@ -43,13 +62,13 @@ class EpubScreenState extends BookScreenState<EpubScreen, EpubController> {
 
   @override
   EpubController createPublicationController(
-      Function onServerClosed,
-      Function? onPageJump,
-      Future<String?> locationFuture,
-      FileAsset fileAsset,
-      Future<Streamer> streamerFuture,
-      ReaderAnnotationRepository readerAnnotationRepository,
-      Function0<List<RequestHandler>> handlersProvider) =>
+          Function onServerClosed,
+          Function? onPageJump,
+          Future<String?> locationFuture,
+          FileAsset fileAsset,
+          Future<Streamer> streamerFuture,
+          ReaderAnnotationRepository readerAnnotationRepository,
+          Function0<List<RequestHandler>> handlersProvider) =>
       EpubController(onServerClosed, onPageJump, locationFuture, fileAsset,
           streamerFuture, readerAnnotationRepository, handlersProvider);
 
@@ -70,31 +89,31 @@ class EpubScreenState extends BookScreenState<EpubScreen, EpubController> {
 
   @override
   Widget build(BuildContext context) => MultiBlocProvider(
-    providers: [
-      BlocProvider(create: (context) => _viewerSettingsBloc),
-      BlocProvider(create: (context) => _readerThemeBloc),
-    ],
-    child: super.build(context),
-  );
+        providers: [
+          BlocProvider(create: (context) => _viewerSettingsBloc),
+          BlocProvider(create: (context) => _readerThemeBloc),
+        ],
+        child: super.build(context),
+      );
 
   @override
   Widget buildBackground() => BlocBuilder(
-    bloc: _readerThemeBloc,
-    builder: (BuildContext context, ReaderThemeState state) => Container(
-      color: state.readerTheme.backgroundColor,
-    ),
-  );
+        bloc: _readerThemeBloc,
+        builder: (BuildContext context, ReaderThemeState state) => Container(
+          color: state.readerTheme.backgroundColor,
+        ),
+      );
 
   @override
   Function0<List<RequestHandler>> get handlersProvider => () => [
-    AssetsRequestHandler(
-      'packages/mno_navigator/assets',
-      assetProvider: _AssetProvider(),
-      transformData: _transformAssetData,
-    ),
-    FetcherRequestHandler(readerContext.publication!,
-        googleFonts: Fonts.googleFonts)
-  ];
+        AssetsRequestHandler(
+          'packages/mno_navigator/assets',
+          assetProvider: _AssetProvider(),
+          transformData: _transformAssetData,
+        ),
+        FetcherRequestHandler(readerContext.publication!,
+            googleFonts: Fonts.googleFonts)
+      ];
   Uint8List _transformAssetData(String href, Uint8List data) {
     if (href == 'xpub-js/ReadiumCSS-after.css') {
       ReadiumThemeValues values = ReadiumThemeValues(
