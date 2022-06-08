@@ -5,7 +5,7 @@ import 'package:test_drive/utils.dart';
 
 import '../../../../domain/book/book.dart';
 
-void openBook(BuildContext context, Book book) {
+void openBook(BuildContext context, Book book) async {
   String locationChapter = book.lastLocation ?? '';
 
   void saveToDatabase(String lastLocation) async {
@@ -14,7 +14,7 @@ void openBook(BuildContext context, Book book) {
     print('saved location - $lastLocation - for ${book.getBoxName()}');
   }
 
-  Navigator.push(
+  final result = await Navigator.push(
     context,
     MaterialPageRoute(
         // the cfi cant be null, but empty string is ok
@@ -26,8 +26,5 @@ void openBook(BuildContext context, Book book) {
               // CALLBACK FUNCTION IS CALLED WHENEVER A NEW SPINEITEM IS NAVIGATED TO
               callback: saveToDatabase,
             )),
-
-    // TODO:: Update Iridium to flutter 3 migration branch - might make less buggy
-    // Open another branch to test
   );
 }

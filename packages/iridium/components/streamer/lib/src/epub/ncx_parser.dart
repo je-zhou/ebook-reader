@@ -38,7 +38,7 @@ class NcxParser {
           .mapNotNull((it) {
         String? href = _extractHref(it, filePath);
         String? title = _extractTitle(it);
-        return (!href.isNotNullOrBlank || !title.isNotNullOrBlank)
+        return (href.isNullOrBlank || title.isNullOrBlank)
             ? null
             : Link(title: title, href: href!);
       }).toList();
