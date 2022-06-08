@@ -1,7 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
+import 'package:test_drive/utils.dart';
 
-void openBook(BuildContext context, String path) {
+import '../../../../domain/book/book.dart';
+
+void openBook(BuildContext context, Book book) {
+  String locationChapter = book.lastLocation ?? '';
+
+  void saveToDatabase(String lastLocation) async {
+    Hive.openLazyBox(HiveBoxNames.bookLocationBox)
+        .then((box) => box.put(book.getBoxName(), lastLocation));
+    print('saved location - $lastLocation - for ${book.getBoxName()}');
+  }
+
   Navigator.push(
     context,
     MaterialPageRoute(
@@ -9,13 +21,10 @@ void openBook(BuildContext context, String path) {
         // the idref is the path minus the server
         // not sure how to solve
         builder: (context) => EpubScreen.fromPath(
-              filePath: path,
-
-              // TODO:: SAVE SPINE_ITEM_ID TO DB THEN CAN OPEN EBOOK FROM THAT SPINE_ITEM_ID
-              location: '{"cfi":"","idref":"Chapter03"}',
+              filePath: book.path,
+              location: '{"cfi":"","idref":"$locationChapter"}',
               // CALLBACK FUNCTION IS CALLED WHENEVER A NEW SPINEITEM IS NAVIGATED TO
-              // TODO:: replace print function with a 'save to db' function
-              callback: print,
+              callback: saveToDatabase,
             )),
 
     // TODO:: Update Iridium to flutter 3 migration branch - might make less buggy

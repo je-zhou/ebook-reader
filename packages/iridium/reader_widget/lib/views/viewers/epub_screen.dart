@@ -51,8 +51,7 @@ class EpubScreenState extends BookScreenState<EpubScreen, EpubController> {
       if (widget.callback != null) {
         String? spineItemId =
             publicationController.publication.pageLinks[event.spineItemIdx].id;
-
-        widget.callback!('CURRENTLY ON: ' '$spineItemId');
+        widget.callback!(spineItemId);
       }
     });
   }

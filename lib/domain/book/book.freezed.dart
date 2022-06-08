@@ -22,6 +22,8 @@ class _$BookTearOff {
       String? href,
       String? description,
       int? numOfChapters,
+      String? lastLocation,
+      double? readProgress,
       required String fileType,
       required String path,
       required String title,
@@ -32,6 +34,8 @@ class _$BookTearOff {
       href: href,
       description: description,
       numOfChapters: numOfChapters,
+      lastLocation: lastLocation,
+      readProgress: readProgress,
       fileType: fileType,
       path: path,
       title: title,
@@ -50,6 +54,8 @@ mixin _$Book {
   String? get href => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   int? get numOfChapters => throw _privateConstructorUsedError;
+  String? get lastLocation => throw _privateConstructorUsedError;
+  double? get readProgress => throw _privateConstructorUsedError;
   String get fileType => throw _privateConstructorUsedError;
   String get path => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
@@ -69,6 +75,8 @@ abstract class $BookCopyWith<$Res> {
       String? href,
       String? description,
       int? numOfChapters,
+      String? lastLocation,
+      double? readProgress,
       String fileType,
       String path,
       String title,
@@ -90,6 +98,8 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
     Object? href = freezed,
     Object? description = freezed,
     Object? numOfChapters = freezed,
+    Object? lastLocation = freezed,
+    Object? readProgress = freezed,
     Object? fileType = freezed,
     Object? path = freezed,
     Object? title = freezed,
@@ -113,6 +123,14 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
           ? _value.numOfChapters
           : numOfChapters // ignore: cast_nullable_to_non_nullable
               as int?,
+      lastLocation: lastLocation == freezed
+          ? _value.lastLocation
+          : lastLocation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      readProgress: readProgress == freezed
+          ? _value.readProgress
+          : readProgress // ignore: cast_nullable_to_non_nullable
+              as double?,
       fileType: fileType == freezed
           ? _value.fileType
           : fileType // ignore: cast_nullable_to_non_nullable
@@ -147,6 +165,8 @@ abstract class _$BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       String? href,
       String? description,
       int? numOfChapters,
+      String? lastLocation,
+      double? readProgress,
       String fileType,
       String path,
       String title,
@@ -169,6 +189,8 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
     Object? href = freezed,
     Object? description = freezed,
     Object? numOfChapters = freezed,
+    Object? lastLocation = freezed,
+    Object? readProgress = freezed,
     Object? fileType = freezed,
     Object? path = freezed,
     Object? title = freezed,
@@ -192,6 +214,14 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
           ? _value.numOfChapters
           : numOfChapters // ignore: cast_nullable_to_non_nullable
               as int?,
+      lastLocation: lastLocation == freezed
+          ? _value.lastLocation
+          : lastLocation // ignore: cast_nullable_to_non_nullable
+              as String?,
+      readProgress: readProgress == freezed
+          ? _value.readProgress
+          : readProgress // ignore: cast_nullable_to_non_nullable
+              as double?,
       fileType: fileType == freezed
           ? _value.fileType
           : fileType // ignore: cast_nullable_to_non_nullable
@@ -218,17 +248,20 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_Book implements _Book {
+class _$_Book extends _Book {
   _$_Book(
       {this.id,
       this.href,
       this.description,
       this.numOfChapters,
+      this.lastLocation,
+      this.readProgress,
       required this.fileType,
       required this.path,
       required this.title,
       required this.authors,
-      required this.img});
+      required this.img})
+      : super._();
 
   @override
   final String? id;
@@ -238,6 +271,10 @@ class _$_Book implements _Book {
   final String? description;
   @override
   final int? numOfChapters;
+  @override
+  final String? lastLocation;
+  @override
+  final double? readProgress;
   @override
   final String fileType;
   @override
@@ -251,7 +288,7 @@ class _$_Book implements _Book {
 
   @override
   String toString() {
-    return 'Book(id: $id, href: $href, description: $description, numOfChapters: $numOfChapters, fileType: $fileType, path: $path, title: $title, authors: $authors, img: $img)';
+    return 'Book(id: $id, href: $href, description: $description, numOfChapters: $numOfChapters, lastLocation: $lastLocation, readProgress: $readProgress, fileType: $fileType, path: $path, title: $title, authors: $authors, img: $img)';
   }
 
   @override
@@ -265,6 +302,10 @@ class _$_Book implements _Book {
                 .equals(other.description, description) &&
             const DeepCollectionEquality()
                 .equals(other.numOfChapters, numOfChapters) &&
+            const DeepCollectionEquality()
+                .equals(other.lastLocation, lastLocation) &&
+            const DeepCollectionEquality()
+                .equals(other.readProgress, readProgress) &&
             const DeepCollectionEquality().equals(other.fileType, fileType) &&
             const DeepCollectionEquality().equals(other.path, path) &&
             const DeepCollectionEquality().equals(other.title, title) &&
@@ -279,6 +320,8 @@ class _$_Book implements _Book {
       const DeepCollectionEquality().hash(href),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(numOfChapters),
+      const DeepCollectionEquality().hash(lastLocation),
+      const DeepCollectionEquality().hash(readProgress),
       const DeepCollectionEquality().hash(fileType),
       const DeepCollectionEquality().hash(path),
       const DeepCollectionEquality().hash(title),
@@ -291,17 +334,20 @@ class _$_Book implements _Book {
       __$BookCopyWithImpl<_Book>(this, _$identity);
 }
 
-abstract class _Book implements Book {
+abstract class _Book extends Book {
   factory _Book(
       {String? id,
       String? href,
       String? description,
       int? numOfChapters,
+      String? lastLocation,
+      double? readProgress,
       required String fileType,
       required String path,
       required String title,
       required List<String> authors,
       required Uint8List img}) = _$_Book;
+  _Book._() : super._();
 
   @override
   String? get id;
@@ -311,6 +357,10 @@ abstract class _Book implements Book {
   String? get description;
   @override
   int? get numOfChapters;
+  @override
+  String? get lastLocation;
+  @override
+  double? get readProgress;
   @override
   String get fileType;
   @override

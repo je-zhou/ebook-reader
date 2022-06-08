@@ -10,3 +10,9 @@ Future<File> writeToFile(ByteData data) async {
   return File(filePath)
       .writeAsBytes(buffer.asUint8List(data.offsetInBytes, data.lengthInBytes));
 }
+
+class HiveBoxNames {
+  static get bookLocationBox => 'bookLocation';
+  static get settingsBox => 'settings';
+  static get bookQuotesBox => 'bookQuotes';
+}
