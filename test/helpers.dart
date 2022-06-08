@@ -1,5 +1,6 @@
 import 'dart:typed_data';
 
+import 'package:flutter/cupertino.dart';
 import 'package:test_drive/domain/book/book.dart';
 
 const title = 'title';
@@ -134,3 +135,28 @@ const List<int> kTransparentImage = <int>[
 ];
 Book exampleBook =
     Book(authors: [author], title: title, img: Uint8List.fromList(kTransparentImage), path: '', fileType: '.pdf');
+
+
+void ignoreOverflowErrors(
+    FlutterErrorDetails details, {
+      bool forceReport = false,
+    }) {
+  bool ifIsOverflowError = false;
+  bool isUnableToLoadAsset = false;
+
+  var exception = details.exception;
+  if (exception is FlutterError) {
+    ifIsOverflowError = !exception.diagnostics.any(
+          (e) => e.value.toString().startsWith("A RenderFlex overflowed by"),
+    );
+    isUnableToLoadAsset = !exception.diagnostics.any(
+          (e) => e.value.toString().startsWith("Unable to load asset"),
+    );
+  }
+
+  if (ifIsOverflowError || isUnableToLoadAsset) {
+    debugPrint('Ignored Error');
+  } else {
+    FlutterError.dumpErrorToConsole(details, forceReport: forceReport);
+  }
+}

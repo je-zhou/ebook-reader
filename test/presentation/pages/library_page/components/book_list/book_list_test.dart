@@ -15,6 +15,8 @@ class BookListTestCase {
 }
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   group('Book list contains book list tiles', () {
     List<BookListTestCase> bookListTestCases = [
       BookListTestCase("when no books", [], findsNothing),
@@ -24,6 +26,8 @@ void main() {
 
     for (var testCase in bookListTestCases) {
       testWidgets(testCase.testName, (WidgetTester tester) async {
+        FlutterError.onError = ignoreOverflowErrors;
+
         final bookListTile = find.byType(BookListTile);
 
         await tester.pumpWidget(MaterialApp(home: BookList(books: testCase.books)));
