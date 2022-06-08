@@ -2,11 +2,8 @@ import 'dart:typed_data';
 
 import 'package:test_drive/domain/book/book.dart';
 
-const imageUrl =
-    'assets/hello_habits.jpg'; // prefer if i can use a dummy path :/
 const title = 'title';
 const author = 'author';
-Uint8List a = Uint8List.fromList(kTransparentImage);
 const List<int> kTransparentImage = <int>[
   0x89,
   0x50,
@@ -136,4 +133,4 @@ const List<int> kTransparentImage = <int>[
   0x82,
 ];
 Book exampleBook =
-    Book(authors: [author], title: title, img: a, path: '', fileType: '.pdf');
+    Book(authors: [author], title: title, img: Uint8List.fromList(kTransparentImage), path: '', fileType: '.pdf');

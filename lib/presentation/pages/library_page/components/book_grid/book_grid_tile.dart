@@ -17,6 +17,7 @@ class BookGridTile extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             Container(
+              key: const Key("Book Cover"),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(4),
                 image: DecorationImage(
