@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:test_drive/presentation/wrapper.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,6 +12,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    // Initialising database
+    Hive.initFlutter();
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
