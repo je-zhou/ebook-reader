@@ -11,7 +11,6 @@ class BookViewCubit extends Cubit<BookViewState> {
   }
 
   void search(String str) {
-    print(str);
     emit(state.copyWith(searchBy: str));
   }
 
