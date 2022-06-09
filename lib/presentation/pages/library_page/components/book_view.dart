@@ -19,10 +19,14 @@ class BookView extends StatelessWidget {
             BlocBuilder<BookViewCubit, BookViewState>(
               builder: (context, state) {
                 if (snapshot.hasData) {
+                  var books = snapshot.data as List<Book>;
+                  if (state.isSearch) {
+                    books = books.where((book) => book.title.contains(state.searchBy)).toList();
+                  }
                   if (state.isGridView) {
-                    return BookGrid(books: snapshot.data as List<Book>);
+                    return BookGrid(books: books);
                   } else {
-                    return BookList(books: snapshot.data as List<Book>);
+                    return BookList(books: books);
                   }
                 }
                 return const CircularProgressIndicator();
