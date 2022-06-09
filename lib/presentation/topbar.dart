@@ -24,11 +24,12 @@ class Topbar extends StatelessWidget with PreferredSizeWidget {
               ),
             );
 
+            var searchController = TextEditingController();
             final Widget _searchButton = Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: IconButton(
                     onPressed: () =>
-                        context.read<BookViewCubit>().toggleIsSearch(),
+                        context.read<BookViewCubit>().toggleIsSearch(searchController.text),
                     icon: const Icon(FontAwesomeIcons.magnifyingGlass)));
 
             final Widget _filterButton = Padding(
@@ -49,7 +50,8 @@ class Topbar extends StatelessWidget with PreferredSizeWidget {
             title = title.substring(0, 1).toUpperCase() + title.substring(1);
 
             return AppBar(
-              title: bookViewState.isSearch ? const TextField() : Text(title),
+              //TODO: whenever onchange it bugs uf the textfield (ideally use onchanged)
+              title: bookViewState.isSearch ? TextField(controller: searchController, onEditingComplete: () => context.read<BookViewCubit>().search(searchController.text),) : Text(title),
               actions: iconButtons,
             );
           },
