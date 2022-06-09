@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
+import 'package:test_drive/application/book_loader/book_loader_cubit.dart';
 import 'package:test_drive/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,4 +29,5 @@ void openBook(BuildContext context, Book book) async {
   );
 
   saveToDatabase(result['locator']);
+  context.read<BookLoaderCubit>().getBooks();
 }
