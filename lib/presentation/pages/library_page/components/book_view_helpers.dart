@@ -27,4 +27,6 @@ void openBook(BuildContext context, Book book) async {
               callback: saveToDatabase,
             )),
   );
+
+  saveToDatabase(result['locator']);
 }
