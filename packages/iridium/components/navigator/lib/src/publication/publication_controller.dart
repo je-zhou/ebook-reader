@@ -137,6 +137,7 @@ abstract class PublicationController extends NavigationController {
     if (pageControllerAttached && command.spineItemIndex != null) {
       jumpToPage(command.spineItemIndex!);
       onPageJump?.call();
+      print('IM BEING CALLED');
     }
   }
 }

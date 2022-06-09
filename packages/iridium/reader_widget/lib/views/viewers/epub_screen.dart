@@ -83,12 +83,14 @@ class EpubScreenState extends BookScreenState<EpubScreen, EpubController> {
     _readerThemeBloc = ReaderThemeBloc(widget.theme != null
         ? ReaderThemeConfig.fromJson(widget.theme!)
         : ReaderThemeConfig.defaultTheme);
+  }
 
-    publicationController.currentSpineItemBloc.stream.listen((event) {
+  @override
+  void onReaderContextCreated(ReaderContext readerContext) {
+    this.readerContext = readerContext;
+    this.readerContext.currentLocationStream.listen((event) {
       if (widget.callback != null) {
-        String? spineItemId =
-            publicationController.publication.pageLinks[event.spineItemIdx].id;
-        widget.callback!(spineItemId);
+        widget.callback!(event.locator.json);
       }
     });
   }
