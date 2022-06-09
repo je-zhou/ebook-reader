@@ -24,34 +24,43 @@ class Topbar extends StatelessWidget with PreferredSizeWidget {
               ),
             );
 
-            var searchController = TextEditingController();
             final Widget _searchButton = Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: IconButton(
-                    onPressed: () =>
-                        context.read<BookViewCubit>().toggleIsSearch(searchController.text),
+                    onPressed: () => context
+                        .read<BookViewCubit>()
+                        .toggleIsSearch(),
                     icon: const Icon(FontAwesomeIcons.magnifyingGlass)));
 
             final Widget _filterButton = Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: IconButton(
-                    onPressed: () =>
-                        print("filter pressed"),
+                    onPressed: () => print("filter pressed"),
                     icon: const Icon(FontAwesomeIcons.filter)));
 
             List<Widget> iconButtons = pageSelectorState.map(
-              library: (_) => [_searchButton, _filterButton, _gridOrListButton],
-              quotes: (_) => [_searchButton, _filterButton],
-              settings: (_) => [_searchButton]
-            );
+                library: (_) =>
+                    [_searchButton, _filterButton, _gridOrListButton],
+                quotes: (_) => [_searchButton, _filterButton],
+                settings: (_) => [_searchButton]);
 
             // lol
-            String title = pageSelectorState.toString().split('.').last.replaceAll('()', '');
+            String title = pageSelectorState
+                .toString()
+                .split('.')
+                .last
+                .replaceAll('()', '');
             title = title.substring(0, 1).toUpperCase() + title.substring(1);
 
             return AppBar(
-              //TODO: whenever onchange it bugs uf the textfield (ideally use onchanged)
-              title: bookViewState.isSearch ? TextField(controller: searchController, onEditingComplete: () => context.read<BookViewCubit>().search(searchController.text),) : Text(title),
+              title: bookViewState.isSearch
+                  ? TextField(
+                      style: TextStyle(color: Colors.white),
+                      onChanged: (s) => context
+                          .read<BookViewCubit>()
+                          .search(s),
+                    )
+                  : Text(title),
               actions: iconButtons,
             );
           },
