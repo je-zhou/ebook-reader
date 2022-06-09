@@ -50,6 +50,7 @@ class Topbar extends StatelessWidget with PreferredSizeWidget {
             title = title.substring(0, 1).toUpperCase() + title.substring(1);
 
             return AppBar(
+              //TODO: whenever onchange it bugs uf the textfield
               title: bookViewState.isSearch ? TextField(controller: searchController, onChanged: (s) => context.read<BookViewCubit>().search(s),) : Text(title),
               actions: iconButtons,
             );

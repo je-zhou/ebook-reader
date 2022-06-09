@@ -4,11 +4,14 @@ import 'package:test_drive/application/book_view/book_view_cubit.dart';
 import 'package:test_drive/domain/book/book_repository.dart';
 import 'package:test_drive/presentation/pages/library_page/components/book_grid/book_grid.dart';
 import 'package:test_drive/presentation/pages/library_page/components/book_list/book_list.dart';
+import 'package:test_drive/utils.dart';
 
 import '../../../../domain/book/book.dart';
 
+
 class BookView extends StatelessWidget {
   const BookView({Key? key}) : super(key: key);
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class BookView extends StatelessWidget {
                 if (snapshot.hasData) {
                   var books = snapshot.data as List<Book>;
                   if (state.isSearch) {
-                    books = books.where((book) => book.title.contains(state.searchBy)).toList();
+                    books = books.filterBookBySearch(state.searchBy);
                   }
                   if (state.isGridView) {
                     return BookGrid(books: books);
