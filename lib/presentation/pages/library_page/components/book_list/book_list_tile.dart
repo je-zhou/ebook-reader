@@ -13,10 +13,6 @@ class BookListTile extends StatelessWidget {
     // List Tiles will be 1/7 of screen height
     double screenHeight = MediaQuery.of(context).size.height;
 
-    // TODO:: Read progress percentage from db
-    // Placeholder percentage
-    double placeholderPercentage = 0.1;
-
     return GestureDetector(
       onTap: () => openBook(context, book),
       child: Container(
@@ -56,13 +52,14 @@ class BookListTile extends StatelessWidget {
                         height: 20,
                         width: 20,
                         child: CircularProgressIndicator(
-                          value: placeholderPercentage,
+                          value: book.readProgress ?? 0,
                           backgroundColor: Colors.grey,
                           color: Colors.black54,
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Text('${placeholderPercentage * 100}%')
+                      Text(
+                          '${((book.readProgress ?? 0) * 100).toStringAsFixed(2)}%')
                     ],
                   ),
                   Row(

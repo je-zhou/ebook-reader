@@ -14,7 +14,7 @@ Future<File> writeToFile(ByteData data) async {
 }
 
 class HiveBoxNames {
-  static get bookLocationBox => 'bookLocation';
+  static get bookProgressBox => 'bookProgress';
   static get settingsBox => 'settings';
   static get bookQuotesBox => 'bookQuotes';
 }

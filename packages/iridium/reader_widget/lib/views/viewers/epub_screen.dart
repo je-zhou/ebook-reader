@@ -90,7 +90,10 @@ class EpubScreenState extends BookScreenState<EpubScreen, EpubController> {
     this.readerContext = readerContext;
     this.readerContext.currentLocationStream.listen((event) {
       if (widget.callback != null) {
-        widget.callback!(event.locator.json);
+        int currentPage = event.page;
+        int totalPages = readerContext.publication!.nbPages;
+
+        widget.callback!(event.locator.json, currentPage / totalPages);
       }
     });
   }

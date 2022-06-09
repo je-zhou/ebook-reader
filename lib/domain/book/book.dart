@@ -50,10 +50,18 @@ class Book with _$Book {
         .then((value) => img = value.getOrNull()!.buffer.asUint8List());
 
     // Last Location
-    var bookLocationBox = await Hive.openLazyBox(HiveBoxNames.bookLocationBox);
-    String? lastLocationId =
-        await bookLocationBox.get('$title - ${authors.join(',')}');
-    print(lastLocationId);
+    var bookProgressBox = await Hive.openLazyBox(HiveBoxNames.bookProgressBox);
+
+    Map? bookProgress =
+        await bookProgressBox.get('$title - ${authors.join(',')}');
+
+    String? lastLocationId;
+    double? readProgress;
+
+    if (bookProgress != null) {
+      lastLocationId = bookProgress['lastLocation'];
+      readProgress = bookProgress['progress'];
+    }
 
     return Book(
         authors: authors,
@@ -62,6 +70,7 @@ class Book with _$Book {
         numOfChapters: pub.manifest.tableOfContents.length,
         path: file.path,
         lastLocation: lastLocationId,
+        readProgress: readProgress,
         img: img,
         fileType: extension(file.path));
   }
