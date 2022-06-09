@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
+import 'package:test_drive/application/book_loader/book_loader_cubit.dart';
 import 'package:test_drive/utils.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../domain/book/book.dart';
 
-void openBook(BuildContext context, Book book) {
-  String locationChapter = book.lastLocation ?? '';
-
+void openBook(BuildContext context, Book book) async {
   void saveToDatabase(String lastLocation) async {
     Hive.openLazyBox(HiveBoxNames.bookLocationBox)
         .then((box) => box.put(book.getBoxName(), lastLocation));
     print('saved location - $lastLocation - for ${book.getBoxName()}');
   }
 
-  Navigator.push(
+  final result = await Navigator.push(
     context,
     MaterialPageRoute(
         // the cfi cant be null, but empty string is ok
@@ -22,12 +22,12 @@ void openBook(BuildContext context, Book book) {
         // not sure how to solve
         builder: (context) => EpubScreen.fromPath(
               filePath: book.path,
-              location: '{"cfi":"","idref":"$locationChapter"}',
+              location: book.lastLocation,
               // CALLBACK FUNCTION IS CALLED WHENEVER A NEW SPINEITEM IS NAVIGATED TO
               callback: saveToDatabase,
             )),
-
-    // TODO:: Update Iridium to flutter 3 migration branch - might make less buggy
-    // Open another branch to test
   );
+
+  saveToDatabase(result['locator']);
+  context.read<BookLoaderCubit>().getBooks();
 }

@@ -59,7 +59,7 @@ class MetadataParser {
     List<EpubLink> links = elements.item2;
     List<_MetadataItem> metaHierarchy = _resolveMetaHierarchy(metas);
     List<List<_MetadataItem>> partitions =
-        metaHierarchy.partition((it) => !it.refines.isNotNullOrBlank);
+        metaHierarchy.partition((it) => it.refines.isNullOrBlank);
     List<_MetadataItem> globalMetas = partitions[0];
     List<_MetadataItem> refineMetas = partitions[1];
     Map<String, List<_MetadataItem>> globalCollection =
