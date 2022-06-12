@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:test_drive/presentation/pages/page_wrapper.dart';
+import 'package:test_drive/presentation/appbar/appbar_wrapper.dart';
 
-import 'topbar.dart';
 import 'menu.dart';
 
 class MyHomePage extends StatelessWidget {
@@ -10,7 +10,7 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      appBar: Topbar(),
+      appBar: AppbarWrapper(),
       body: PageWrapper(),
       bottomNavigationBar: Menu(),
     );

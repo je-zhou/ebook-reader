@@ -4,8 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:test_drive/application/book_view/book_view_cubit.dart';
 import 'package:test_drive/application/page_selector/page_selector_cubit.dart';
-import 'package:test_drive/presentation/topbar.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:test_drive/presentation/appbar/appbar_wrapper.dart';
 
 import '../test_doubles/mock_book_view_cubit.dart';
 import '../test_doubles/mock_page_selector_cubit.dart';
@@ -29,7 +29,7 @@ void main() {
           create: (context) => mockBookViewCubit,
         ),
       ],
-      child: const MaterialApp(home: Scaffold(appBar: Topbar())),
+      child: const MaterialApp(home: Scaffold(appBar: AppbarWrapper())),
     );
   }
 
