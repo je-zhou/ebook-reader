@@ -2,39 +2,50 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:test_drive/application/book_loader/book_loader_cubit.dart';
 import 'package:test_drive/application/book_view/book_view_cubit.dart';
 import 'package:test_drive/presentation/pages/library_page/components/book_grid/book_grid.dart';
 import 'package:test_drive/presentation/pages/library_page/components/book_list/book_list.dart';
 import 'package:test_drive/presentation/pages/library_page/components/book_view.dart';
 
+import '../../../../test_doubles/mock_book_loader_cubit.dart';
 import '../../../../test_doubles/mock_book_view_cubit.dart';
 
 void main() {
-  late MockBookViewCubit mockCubit;
+  late MockBookViewCubit mockBookViewCubit;
+  late MockBookLoaderCubit mockBookLoaderCubit;
 
   setUp(() {
-    mockCubit = MockBookViewCubit();
+    mockBookViewCubit = MockBookViewCubit();
+    mockBookLoaderCubit = MockBookLoaderCubit();
   });
 
   void arrangeStateIsInGridView() {
-    when(() => mockCubit.state)
+    when(() => mockBookViewCubit.state)
         .thenReturn(BookViewState.initial().copyWith(isGridView: true));
   }
 
   void arrangeStateIsInListView() {
-    when(() => mockCubit.state)
+    when(() => mockBookViewCubit.state)
         .thenReturn(BookViewState.initial().copyWith(isGridView: false));
   }
 
+  void arrangeBookLoaderStateIsLoading() {
+    when(() => mockBookLoaderCubit.state)
+        .thenReturn(const BookLoaderState.loading());
+  }
+
   Widget createWidgetUnderTest() {
-    return BlocProvider<BookViewCubit>(
-      create: (context) => mockCubit,
-      child: const MaterialApp(
-        home: Scaffold(
-          body: BookView(),
-        ),
-      ),
-    );
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider<BookViewCubit>(create: (context) => mockBookViewCubit),
+          BlocProvider<BookLoaderCubit>(create: (context) => mockBookLoaderCubit),
+        ],
+        child: const MaterialApp(
+          home: Scaffold(
+            body: BookView(),
+          ),
+        ));
   }
 
   group("Test Book View shows correct view type", () {
@@ -59,6 +70,7 @@ void main() {
   }, skip: "FutureBuilder broke this test");
 
   group("Shows loading spinner", () {
+    setUp(() => arrangeBookLoaderStateIsLoading());
     testWidgets('on list view', (WidgetTester tester) async {
       arrangeStateIsInListView();
 
@@ -80,3 +92,5 @@ void main() {
     });
   });
 }
+
+
