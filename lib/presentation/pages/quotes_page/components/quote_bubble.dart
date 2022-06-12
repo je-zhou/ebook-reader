@@ -13,13 +13,13 @@ class QuoteBubble extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(25, 20, 25, 5),
         child: Column(children: [
           DecoratedBox(
-              decoration: const BoxDecoration(color: Colors.lightBlueAccent, borderRadius: BorderRadius.all(Radius.circular(5))),
+              decoration: BoxDecoration(
+                  color: Theme.of(context).cardColor,
+                  borderRadius: BorderRadius.all(Radius.circular(5))),
               child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Text(
                     quote.quote,
-                    style: const TextStyle(
-                        backgroundColor: Colors.lightBlueAccent),
                   ))),
           Align(
             child: Padding(
