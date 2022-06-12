@@ -37,7 +37,7 @@ class LibraryAppbar extends StatelessWidget {
         return AppBar(
           title: bookViewState.isSearch
               ? TextField(
-                  style: const TextStyle(color: Colors.white),
+                  style: Theme.of(context).textTheme.headline6,
                   onChanged: (s) => context.read<BookViewCubit>().search(s),
                 )
               : Text(title),

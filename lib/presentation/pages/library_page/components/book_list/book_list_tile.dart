@@ -36,13 +36,12 @@ class BookListTile extends StatelessWidget {
                     children: [
                       Text(
                         book.title,
-                        style: const TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.bold),
+                        style: Theme.of(context).textTheme.bodyText1,
                       ),
                       const SizedBox(height: 4),
                       Text(
                         book.authors.join(", "),
-                        style: const TextStyle(fontSize: 12),
+                        style: Theme.of(context).textTheme.bodyText2,
                       ),
                     ],
                   ),
@@ -59,21 +58,21 @@ class BookListTile extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                          '${((book.readProgress ?? 0) * 100).toStringAsFixed(2)}%')
+                        '${((book.readProgress ?? 0) * 100).toStringAsFixed(2)}%',
+                        style: Theme.of(context).textTheme.subtitle1,
+                      )
                     ],
                   ),
                   Row(
                     children: [
                       Text(
                         book.fileType.substring(1).toUpperCase(),
-                        style: const TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.w300),
+                        style: Theme.of(context).textTheme.subtitle1,
                       ),
                       const SizedBox(width: 8),
                       Text(
                         '${book.numOfChapters} Chapters',
-                        style: const TextStyle(
-                            fontSize: 12, fontWeight: FontWeight.w300),
+                        style: Theme.of(context).textTheme.subtitle1,
                       )
                     ],
                   )

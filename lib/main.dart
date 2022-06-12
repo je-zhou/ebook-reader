@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_drive/AppTheme.dart';
 import 'package:test_drive/presentation/wrapper.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -16,9 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme(),
       home: const Wrapper(),
     );
   }
