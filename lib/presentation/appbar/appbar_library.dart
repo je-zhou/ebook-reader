@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:test_drive/application/book_view/book_view_cubit.dart';
 
+import 'appbar_helpers.dart';
+
 class LibraryAppbar extends StatelessWidget {
   const LibraryAppbar({Key? key}) : super(key: key);
 
@@ -10,27 +12,19 @@ class LibraryAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BookViewCubit, BookViewState>(
       builder: (context, bookViewState) {
-        final Widget _gridOrListButton = Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: IconButton(
+        final Widget _gridOrListButton = button(
             onPressed: () => context.read<BookViewCubit>().toggleBookView(),
-            icon: Icon(bookViewState.isGridView
+            icon: bookViewState.isGridView
                 ? FontAwesomeIcons.list
-                : FontAwesomeIcons.borderAll),
-          ),
-        );
+                : FontAwesomeIcons.borderAll);
 
-        final Widget _searchButton = Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: IconButton(
-                onPressed: () => context.read<BookViewCubit>().toggleIsSearch(),
-                icon: const Icon(FontAwesomeIcons.magnifyingGlass)));
+        final Widget _searchButton = button(
+            onPressed: () => context.read<BookViewCubit>().toggleIsSearch(),
+            icon: FontAwesomeIcons.magnifyingGlass);
 
-        final Widget _filterButton = Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: IconButton(
-                onPressed: () => print("filter pressed"),
-                icon: const Icon(FontAwesomeIcons.filter)));
+        final Widget _filterButton = button(
+            onPressed: () => print("filter pressed"),
+            icon: FontAwesomeIcons.filter);
 
         List<Widget> iconButtons = [
           _searchButton,
