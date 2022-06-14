@@ -12,7 +12,11 @@ class BDViewQuotesButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
-      children: [Icon(FontAwesomeIcons.clipboard), Text('View Quotes')],
+      children: const [
+        Icon(FontAwesomeIcons.clipboard),
+        SizedBox(width: 12),
+        Text('View Quotes')
+      ],
     );
   }
 }

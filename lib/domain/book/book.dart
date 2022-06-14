@@ -64,7 +64,8 @@ class Book with _$Book {
     if (bookProgress != null) {
       lastLocationId = bookProgress['lastLocation'];
       readProgress = bookProgress['progress'];
-      numOfPages = bookProgress['totalPages'];
+      numOfPages = bookProgress['numOfPages'];
+      print(numOfPages);
     }
 
     return Book(

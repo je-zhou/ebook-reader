@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:test_drive/domain/book/book.dart';
@@ -19,8 +21,7 @@ class BookDetails extends StatelessWidget {
     // Image will have 1:1.6 aspect ratio
     double imageWidth = (screenWidth - 72) / 3;
     double imageHeight = imageWidth * 1.6;
-
-    double progressBarWidth = imageWidth * 1.8;
+    double progressBarWidth = imageWidth * 1.5;
 
     return Padding(
       padding: const EdgeInsets.all(24.0),
@@ -39,7 +40,7 @@ class BookDetails extends StatelessWidget {
                   height: imageHeight,
                 ),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 24),
               SizedBox(
                 height: imageHeight,
                 child: Column(
@@ -59,8 +60,9 @@ class BookDetails extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              BDViewQuotesButton(book: book),
-              BDContinueButton(book: book),
+              Flexible(flex: 2, child: BDViewQuotesButton(book: book)),
+              const SizedBox(width: 12),
+              Flexible(flex: 3, child: BDContinueButton(book: book)),
             ],
           )
         ],

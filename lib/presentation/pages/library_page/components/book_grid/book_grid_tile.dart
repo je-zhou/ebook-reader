@@ -10,7 +10,7 @@ class BookGridTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => openBook(context, book),
+      onTap: () => showBookDetails(context, book),
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: Stack(

@@ -15,7 +15,6 @@ class BookListTile extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => showBookDetails(context, book),
-      //  onTap: () => openBook(context, book),
       child: Container(
         height: screenHeight / 7,
         margin: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),

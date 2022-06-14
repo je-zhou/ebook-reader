@@ -10,14 +10,14 @@ import '../../../../domain/book/book.dart';
 
 void openBook(BuildContext context, Book book) async {
   void saveToDatabase(
-      String lastLocation, double progress, double totalPages) async {
+      String lastLocation, double progress, int totalPages) async {
     Hive.openLazyBox(HiveBoxNames.bookProgressBox).then(
       (box) => box.put(
         book.getBoxName(),
         {
           'lastLocation': lastLocation,
           'progress': progress,
-          'totalPages': totalPages
+          'numOfPages': totalPages,
         },
       ),
     );
@@ -27,24 +27,29 @@ void openBook(BuildContext context, Book book) async {
   await Navigator.push(
     context,
     MaterialPageRoute(
-        // the cfi cant be null, but empty string is ok
-        // the idref is the path minus the server
-        // not sure how to solve
-        builder: (context) => EpubScreen.fromPath(
-              filePath: book.path,
-              location: book.lastLocation,
-              // CALLBACK FUNCTION IS CALLED WHENEVER A NEW SPINEITEM IS NAVIGATED TO
-              callback: saveToDatabase,
-            )),
+      // the cfi cant be null, but empty string is ok
+      // the idref is the path minus the server
+      // not sure how to solve
+      builder: (context) => EpubScreen.fromPath(
+        filePath: book.path,
+        location: book.lastLocation,
+        // CALLBACK FUNCTION IS CALLED WHENEVER A NEW SPINEITEM IS NAVIGATED TO
+        callback: saveToDatabase,
+      ),
+    ),
   );
-
-  context.read<BookLoaderCubit>().getBooks();
+  // Pass back true to show that the ebook reader page has been opened
+  Navigator.pop(context, true);
 }
 
 void showBookDetails(BuildContext context, Book book) async {
-  showModalBottomSheet(
-      context: context,
-      builder: (BuildContext mdlContext) {
-        return BookDetails(book: book);
-      });
+  bool readBook = await showModalBottomSheet(
+        context: context,
+        builder: (BuildContext mdlContext) => BookDetails(book: book),
+      ) ??
+      false;
+
+  if (readBook) {
+    context.read<BookLoaderCubit>().getBooks();
+  }
 }

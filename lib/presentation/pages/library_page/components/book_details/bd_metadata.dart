@@ -11,12 +11,21 @@ class BDMetadata extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(book.fileType.substring(1).toUpperCase()),
+        Text(
+          book.fileType.substring(1).toUpperCase(),
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
         const SizedBox(width: 12),
-        Text(book.getFileSizeString()),
+        Text(
+          book.getFileSizeString(),
+          style: Theme.of(context).textTheme.subtitle1,
+        ),
         const SizedBox(width: 12),
         book.numOfPages != null
-            ? Text('${book.numOfPages} pages')
+            ? Text(
+                '${book.numOfPages} pages',
+                style: Theme.of(context).textTheme.subtitle1,
+              )
             : const SizedBox(),
       ],
     );

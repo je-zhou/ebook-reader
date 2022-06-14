@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:test_drive/domain/book/book.dart';
 
 class BDProgressBar extends StatelessWidget {
@@ -11,19 +9,33 @@ class BDProgressBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    double progress = book.readProgress ?? 0;
+
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Container(
-          height: 6,
-          width: width,
-          decoration: BoxDecoration(
-              color: Colors.white38, borderRadius: BorderRadius.circular(8)),
+        Stack(
+          children: [
+            Container(
+              height: 6,
+              width: width,
+              decoration: BoxDecoration(
+                  color: Colors.white38,
+                  borderRadius: BorderRadius.circular(8)),
+            ),
+            Container(
+              height: 6,
+              width: width * book.readProgress!,
+              decoration: BoxDecoration(
+                  color: Colors.white70,
+                  borderRadius: BorderRadius.circular(8)),
+            )
+          ],
         ),
-        Container(
-          height: 6,
-          width: width * book.readProgress!,
-          decoration: BoxDecoration(
-              color: Colors.white70, borderRadius: BorderRadius.circular(8)),
+        const SizedBox(width: 8),
+        Text(
+          '${(progress * 10).toStringAsFixed(2)} %',
+          style: Theme.of(context).textTheme.subtitle1,
         )
       ],
     );
