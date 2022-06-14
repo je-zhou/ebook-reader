@@ -24,6 +24,7 @@ class _$BookTearOff {
       int? numOfChapters,
       String? lastLocation,
       double? readProgress,
+      int? numOfPages,
       required int fileSizeInBytes,
       required String fileType,
       required String path,
@@ -37,6 +38,7 @@ class _$BookTearOff {
       numOfChapters: numOfChapters,
       lastLocation: lastLocation,
       readProgress: readProgress,
+      numOfPages: numOfPages,
       fileSizeInBytes: fileSizeInBytes,
       fileType: fileType,
       path: path,
@@ -58,6 +60,7 @@ mixin _$Book {
   int? get numOfChapters => throw _privateConstructorUsedError;
   String? get lastLocation => throw _privateConstructorUsedError;
   double? get readProgress => throw _privateConstructorUsedError;
+  int? get numOfPages => throw _privateConstructorUsedError;
   int get fileSizeInBytes => throw _privateConstructorUsedError;
   String get fileType => throw _privateConstructorUsedError;
   String get path => throw _privateConstructorUsedError;
@@ -80,6 +83,7 @@ abstract class $BookCopyWith<$Res> {
       int? numOfChapters,
       String? lastLocation,
       double? readProgress,
+      int? numOfPages,
       int fileSizeInBytes,
       String fileType,
       String path,
@@ -104,6 +108,7 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
     Object? numOfChapters = freezed,
     Object? lastLocation = freezed,
     Object? readProgress = freezed,
+    Object? numOfPages = freezed,
     Object? fileSizeInBytes = freezed,
     Object? fileType = freezed,
     Object? path = freezed,
@@ -136,6 +141,10 @@ class _$BookCopyWithImpl<$Res> implements $BookCopyWith<$Res> {
           ? _value.readProgress
           : readProgress // ignore: cast_nullable_to_non_nullable
               as double?,
+      numOfPages: numOfPages == freezed
+          ? _value.numOfPages
+          : numOfPages // ignore: cast_nullable_to_non_nullable
+              as int?,
       fileSizeInBytes: fileSizeInBytes == freezed
           ? _value.fileSizeInBytes
           : fileSizeInBytes // ignore: cast_nullable_to_non_nullable
@@ -176,6 +185,7 @@ abstract class _$BookCopyWith<$Res> implements $BookCopyWith<$Res> {
       int? numOfChapters,
       String? lastLocation,
       double? readProgress,
+      int? numOfPages,
       int fileSizeInBytes,
       String fileType,
       String path,
@@ -201,6 +211,7 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
     Object? numOfChapters = freezed,
     Object? lastLocation = freezed,
     Object? readProgress = freezed,
+    Object? numOfPages = freezed,
     Object? fileSizeInBytes = freezed,
     Object? fileType = freezed,
     Object? path = freezed,
@@ -233,6 +244,10 @@ class __$BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res>
           ? _value.readProgress
           : readProgress // ignore: cast_nullable_to_non_nullable
               as double?,
+      numOfPages: numOfPages == freezed
+          ? _value.numOfPages
+          : numOfPages // ignore: cast_nullable_to_non_nullable
+              as int?,
       fileSizeInBytes: fileSizeInBytes == freezed
           ? _value.fileSizeInBytes
           : fileSizeInBytes // ignore: cast_nullable_to_non_nullable
@@ -271,6 +286,7 @@ class _$_Book extends _Book {
       this.numOfChapters,
       this.lastLocation,
       this.readProgress,
+      this.numOfPages,
       required this.fileSizeInBytes,
       required this.fileType,
       required this.path,
@@ -292,6 +308,8 @@ class _$_Book extends _Book {
   @override
   final double? readProgress;
   @override
+  final int? numOfPages;
+  @override
   final int fileSizeInBytes;
   @override
   final String fileType;
@@ -306,7 +324,7 @@ class _$_Book extends _Book {
 
   @override
   String toString() {
-    return 'Book(id: $id, href: $href, description: $description, numOfChapters: $numOfChapters, lastLocation: $lastLocation, readProgress: $readProgress, fileSizeInBytes: $fileSizeInBytes, fileType: $fileType, path: $path, title: $title, authors: $authors, img: $img)';
+    return 'Book(id: $id, href: $href, description: $description, numOfChapters: $numOfChapters, lastLocation: $lastLocation, readProgress: $readProgress, numOfPages: $numOfPages, fileSizeInBytes: $fileSizeInBytes, fileType: $fileType, path: $path, title: $title, authors: $authors, img: $img)';
   }
 
   @override
@@ -325,6 +343,8 @@ class _$_Book extends _Book {
             const DeepCollectionEquality()
                 .equals(other.readProgress, readProgress) &&
             const DeepCollectionEquality()
+                .equals(other.numOfPages, numOfPages) &&
+            const DeepCollectionEquality()
                 .equals(other.fileSizeInBytes, fileSizeInBytes) &&
             const DeepCollectionEquality().equals(other.fileType, fileType) &&
             const DeepCollectionEquality().equals(other.path, path) &&
@@ -342,6 +362,7 @@ class _$_Book extends _Book {
       const DeepCollectionEquality().hash(numOfChapters),
       const DeepCollectionEquality().hash(lastLocation),
       const DeepCollectionEquality().hash(readProgress),
+      const DeepCollectionEquality().hash(numOfPages),
       const DeepCollectionEquality().hash(fileSizeInBytes),
       const DeepCollectionEquality().hash(fileType),
       const DeepCollectionEquality().hash(path),
@@ -363,6 +384,7 @@ abstract class _Book extends Book {
       int? numOfChapters,
       String? lastLocation,
       double? readProgress,
+      int? numOfPages,
       required int fileSizeInBytes,
       required String fileType,
       required String path,
@@ -383,6 +405,8 @@ abstract class _Book extends Book {
   String? get lastLocation;
   @override
   double? get readProgress;
+  @override
+  int? get numOfPages;
   @override
   int get fileSizeInBytes;
   @override

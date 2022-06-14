@@ -93,7 +93,8 @@ class EpubScreenState extends BookScreenState<EpubScreen, EpubController> {
         int currentPage = event.page;
         int totalPages = readerContext.publication!.nbPages;
 
-        widget.callback!(event.locator.json, currentPage / totalPages);
+        widget.callback!(
+            event.locator.json, currentPage / totalPages, totalPages);
       }
     });
   }

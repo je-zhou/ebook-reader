@@ -9,11 +9,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../domain/book/book.dart';
 
 void openBook(BuildContext context, Book book) async {
-  void saveToDatabase(String lastLocation, double progress) async {
+  void saveToDatabase(
+      String lastLocation, double progress, double totalPages) async {
     Hive.openLazyBox(HiveBoxNames.bookProgressBox).then(
       (box) => box.put(
         book.getBoxName(),
-        {'lastLocation': lastLocation, 'progress': progress},
+        {
+          'lastLocation': lastLocation,
+          'progress': progress,
+          'totalPages': totalPages
+        },
       ),
     );
     print('saved location - $lastLocation - for ${book.getBoxName()}');

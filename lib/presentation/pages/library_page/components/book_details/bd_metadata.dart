@@ -13,9 +13,11 @@ class BDMetadata extends StatelessWidget {
       children: [
         Text(book.fileType.substring(1).toUpperCase()),
         const SizedBox(width: 12),
-        Text('File Size.mb'),
+        Text(book.getFileSizeString()),
         const SizedBox(width: 12),
-        Text('XXX Pages'),
+        book.numOfPages != null
+            ? Text('${book.numOfPages} pages')
+            : const SizedBox(),
       ],
     );
   }

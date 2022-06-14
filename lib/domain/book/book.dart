@@ -22,6 +22,7 @@ class Book with _$Book {
     int? numOfChapters,
     String? lastLocation,
     double? readProgress,
+    int? numOfPages,
     required int fileSizeInBytes,
     required String fileType,
     required String path,
@@ -58,10 +59,12 @@ class Book with _$Book {
 
     String? lastLocationId;
     double? readProgress;
+    int? numOfPages;
 
     if (bookProgress != null) {
       lastLocationId = bookProgress['lastLocation'];
       readProgress = bookProgress['progress'];
+      numOfPages = bookProgress['totalPages'];
     }
 
     return Book(
@@ -69,6 +72,7 @@ class Book with _$Book {
         title: title,
         description: pub.metadata.description,
         numOfChapters: pub.manifest.tableOfContents.length,
+        numOfPages: numOfPages,
         path: file.path,
         fileSizeInBytes: file is File ? file.lengthSync() : 0,
         lastLocation: lastLocationId,
@@ -80,14 +84,15 @@ class Book with _$Book {
   String getBoxName() => '$title - ${authors.join(',')}';
 
   String getFileSizeString() {
-    // KB
-    if (fileSizeInBytes > 1000) {
-      return '${fileSizeInBytes / 1000}KB';
-    }
     // MB
-    else if (fileSizeInBytes > 1000000) {
-      return '${fileSizeInBytes / 1000000}MB';
+    if (fileSizeInBytes > 1000000) {
+      return '${(fileSizeInBytes / 1000000).toStringAsFixed(2)} MB';
     }
-    return '${fileSizeInBytes}B';
+    // KB
+    else if (fileSizeInBytes > 1000) {
+      return '${(fileSizeInBytes / 1000).toStringAsFixed(2)} KB';
+    }
+
+    return '$fileSizeInBytes B';
   }
 }

@@ -133,24 +133,28 @@ const List<int> kTransparentImage = <int>[
   0x60,
   0x82,
 ];
-Book exampleBook =
-    Book(authors: [author], title: title, img: Uint8List.fromList(kTransparentImage), path: '', fileType: '.pdf');
-
+Book exampleBook = Book(
+    authors: [author],
+    title: title,
+    img: Uint8List.fromList(kTransparentImage),
+    path: '',
+    fileType: '.pdf',
+    fileSizeInBytes: 0);
 
 void ignoreOverflowErrors(
-    FlutterErrorDetails details, {
-      bool forceReport = false,
-    }) {
+  FlutterErrorDetails details, {
+  bool forceReport = false,
+}) {
   bool ifIsOverflowError = false;
   bool isUnableToLoadAsset = false;
 
   var exception = details.exception;
   if (exception is FlutterError) {
     ifIsOverflowError = !exception.diagnostics.any(
-          (e) => e.value.toString().startsWith("A RenderFlex overflowed by"),
+      (e) => e.value.toString().startsWith("A RenderFlex overflowed by"),
     );
     isUnableToLoadAsset = !exception.diagnostics.any(
-          (e) => e.value.toString().startsWith("Unable to load asset"),
+      (e) => e.value.toString().startsWith("Unable to load asset"),
     );
   }
 
