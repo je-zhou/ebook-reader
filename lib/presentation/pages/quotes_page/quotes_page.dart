@@ -147,6 +147,7 @@ class QuotesPage extends StatelessWidget {
         fileType: 'epub',
         path: '..',
         title: 'Atomic Habits Hello Habits Goodbyey',
+        fileSizeInBytes: 0,
         authors: [''],
         img: Uint8List.fromList(kTransparentImage));
     return ListView(children: [

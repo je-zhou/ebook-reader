@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:test_drive/domain/book/book.dart';
@@ -13,8 +14,14 @@ class BDTitleAndAuthor extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(book.title),
-        Text(book.authors.join(', ')),
+        Text(
+          book.title,
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
+        Text(
+          book.authors.join(', '),
+          style: Theme.of(context).textTheme.bodyText2,
+        ),
       ],
     );
   }

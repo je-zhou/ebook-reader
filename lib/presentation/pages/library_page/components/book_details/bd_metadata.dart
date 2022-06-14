@@ -11,8 +11,10 @@ class BDMetadata extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(book.fileType),
+        Text(book.fileType.substring(1).toUpperCase()),
+        const SizedBox(width: 12),
         Text('File Size.mb'),
+        const SizedBox(width: 12),
         Text('XXX Pages'),
       ],
     );

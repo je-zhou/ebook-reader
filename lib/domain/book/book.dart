@@ -22,6 +22,7 @@ class Book with _$Book {
     int? numOfChapters,
     String? lastLocation,
     double? readProgress,
+    required int fileSizeInBytes,
     required String fileType,
     required String path,
     required String title,
@@ -69,6 +70,7 @@ class Book with _$Book {
         description: pub.metadata.description,
         numOfChapters: pub.manifest.tableOfContents.length,
         path: file.path,
+        fileSizeInBytes: file is File ? file.lengthSync() : 0,
         lastLocation: lastLocationId,
         readProgress: readProgress,
         img: img,
@@ -76,4 +78,16 @@ class Book with _$Book {
   }
 
   String getBoxName() => '$title - ${authors.join(',')}';
+
+  String getFileSizeString() {
+    // KB
+    if (fileSizeInBytes > 1000) {
+      return '${fileSizeInBytes / 1000}KB';
+    }
+    // MB
+    else if (fileSizeInBytes > 1000000) {
+      return '${fileSizeInBytes / 1000000}MB';
+    }
+    return '${fileSizeInBytes}B';
+  }
 }
