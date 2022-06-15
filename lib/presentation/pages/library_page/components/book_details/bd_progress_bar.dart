@@ -34,7 +34,7 @@ class BDProgressBar extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         Text(
-          '${(progress * 10).toStringAsFixed(2)} %',
+          '${(progress * 100).toStringAsFixed(2)} %',
           style: Theme.of(context).textTheme.subtitle1,
         )
       ],
