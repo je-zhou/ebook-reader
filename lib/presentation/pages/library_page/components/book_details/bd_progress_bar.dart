@@ -25,7 +25,7 @@ class BDProgressBar extends StatelessWidget {
             ),
             Container(
               height: 6,
-              width: width * book.readProgress!,
+              width: width * progress,
               decoration: BoxDecoration(
                   color: Colors.white70,
                   borderRadius: BorderRadius.circular(8)),

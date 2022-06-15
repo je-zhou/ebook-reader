@@ -32,14 +32,13 @@ class BookDetails extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(4)),
-                child: Image.memory(
-                  book.img,
-                  fit: BoxFit.fill,
-                  width: imageWidth,
-                  height: imageHeight,
-                ),
-              ),
+                  borderRadius: const BorderRadius.all(Radius.circular(4)),
+                  child: Image(
+                    image: MemoryImage(book.img),
+                    fit: BoxFit.fill,
+                    width: imageWidth,
+                    height: imageHeight,
+                  )),
               const SizedBox(width: 24),
               SizedBox(
                 height: imageHeight,
