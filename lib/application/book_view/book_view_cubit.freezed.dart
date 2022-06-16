@@ -20,11 +20,13 @@ class _$BookViewStateTearOff {
   _BookViewState call(
       {required bool isGridView,
       required String searchBy,
-      required bool isSearch}) {
+      required bool isSearch,
+      required FilterSettings filterSettings}) {
     return _BookViewState(
       isGridView: isGridView,
       searchBy: searchBy,
       isSearch: isSearch,
+      filterSettings: filterSettings,
     );
   }
 }
@@ -37,6 +39,7 @@ mixin _$BookViewState {
   bool get isGridView => throw _privateConstructorUsedError;
   String get searchBy => throw _privateConstructorUsedError;
   bool get isSearch => throw _privateConstructorUsedError;
+  FilterSettings get filterSettings => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $BookViewStateCopyWith<BookViewState> get copyWith =>
@@ -48,7 +51,11 @@ abstract class $BookViewStateCopyWith<$Res> {
   factory $BookViewStateCopyWith(
           BookViewState value, $Res Function(BookViewState) then) =
       _$BookViewStateCopyWithImpl<$Res>;
-  $Res call({bool isGridView, String searchBy, bool isSearch});
+  $Res call(
+      {bool isGridView,
+      String searchBy,
+      bool isSearch,
+      FilterSettings filterSettings});
 }
 
 /// @nodoc
@@ -65,6 +72,7 @@ class _$BookViewStateCopyWithImpl<$Res>
     Object? isGridView = freezed,
     Object? searchBy = freezed,
     Object? isSearch = freezed,
+    Object? filterSettings = freezed,
   }) {
     return _then(_value.copyWith(
       isGridView: isGridView == freezed
@@ -79,6 +87,10 @@ class _$BookViewStateCopyWithImpl<$Res>
           ? _value.isSearch
           : isSearch // ignore: cast_nullable_to_non_nullable
               as bool,
+      filterSettings: filterSettings == freezed
+          ? _value.filterSettings
+          : filterSettings // ignore: cast_nullable_to_non_nullable
+              as FilterSettings,
     ));
   }
 }
@@ -90,7 +102,11 @@ abstract class _$BookViewStateCopyWith<$Res>
           _BookViewState value, $Res Function(_BookViewState) then) =
       __$BookViewStateCopyWithImpl<$Res>;
   @override
-  $Res call({bool isGridView, String searchBy, bool isSearch});
+  $Res call(
+      {bool isGridView,
+      String searchBy,
+      bool isSearch,
+      FilterSettings filterSettings});
 }
 
 /// @nodoc
@@ -109,6 +125,7 @@ class __$BookViewStateCopyWithImpl<$Res>
     Object? isGridView = freezed,
     Object? searchBy = freezed,
     Object? isSearch = freezed,
+    Object? filterSettings = freezed,
   }) {
     return _then(_BookViewState(
       isGridView: isGridView == freezed
@@ -123,6 +140,10 @@ class __$BookViewStateCopyWithImpl<$Res>
           ? _value.isSearch
           : isSearch // ignore: cast_nullable_to_non_nullable
               as bool,
+      filterSettings: filterSettings == freezed
+          ? _value.filterSettings
+          : filterSettings // ignore: cast_nullable_to_non_nullable
+              as FilterSettings,
     ));
   }
 }
@@ -133,7 +154,8 @@ class _$_BookViewState implements _BookViewState {
   const _$_BookViewState(
       {required this.isGridView,
       required this.searchBy,
-      required this.isSearch});
+      required this.isSearch,
+      required this.filterSettings});
 
   @override
   final bool isGridView;
@@ -141,10 +163,12 @@ class _$_BookViewState implements _BookViewState {
   final String searchBy;
   @override
   final bool isSearch;
+  @override
+  final FilterSettings filterSettings;
 
   @override
   String toString() {
-    return 'BookViewState(isGridView: $isGridView, searchBy: $searchBy, isSearch: $isSearch)';
+    return 'BookViewState(isGridView: $isGridView, searchBy: $searchBy, isSearch: $isSearch, filterSettings: $filterSettings)';
   }
 
   @override
@@ -155,7 +179,9 @@ class _$_BookViewState implements _BookViewState {
             const DeepCollectionEquality()
                 .equals(other.isGridView, isGridView) &&
             const DeepCollectionEquality().equals(other.searchBy, searchBy) &&
-            const DeepCollectionEquality().equals(other.isSearch, isSearch));
+            const DeepCollectionEquality().equals(other.isSearch, isSearch) &&
+            const DeepCollectionEquality()
+                .equals(other.filterSettings, filterSettings));
   }
 
   @override
@@ -163,7 +189,8 @@ class _$_BookViewState implements _BookViewState {
       runtimeType,
       const DeepCollectionEquality().hash(isGridView),
       const DeepCollectionEquality().hash(searchBy),
-      const DeepCollectionEquality().hash(isSearch));
+      const DeepCollectionEquality().hash(isSearch),
+      const DeepCollectionEquality().hash(filterSettings));
 
   @JsonKey(ignore: true)
   @override
@@ -175,7 +202,8 @@ abstract class _BookViewState implements BookViewState {
   const factory _BookViewState(
       {required bool isGridView,
       required String searchBy,
-      required bool isSearch}) = _$_BookViewState;
+      required bool isSearch,
+      required FilterSettings filterSettings}) = _$_BookViewState;
 
   @override
   bool get isGridView;
@@ -183,6 +211,8 @@ abstract class _BookViewState implements BookViewState {
   String get searchBy;
   @override
   bool get isSearch;
+  @override
+  FilterSettings get filterSettings;
   @override
   @JsonKey(ignore: true)
   _$BookViewStateCopyWith<_BookViewState> get copyWith =>

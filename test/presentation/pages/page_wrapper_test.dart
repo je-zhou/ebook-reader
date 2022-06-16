@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:test_drive/application/book_loader/book_loader_cubit.dart';
 import 'package:test_drive/application/book_view/book_view_cubit.dart';
+import 'package:test_drive/application/book_view/filter_settings.dart';
 import 'package:test_drive/application/page_selector/page_selector_cubit.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:test_drive/presentation/pages/library_page/library_page.dart';
@@ -38,14 +39,18 @@ void main() {
           .thenReturn(const PageSelectorState.settings());
 
   void arrangeBookViewState() {
-    when(() => mockBookViewCubit.state)
-        .thenReturn(const BookViewState(isGridView: true, searchBy: '', isSearch: false));
+    when(() => mockBookViewCubit.state).thenReturn(BookViewState(
+        isGridView: true,
+        searchBy: '',
+        isSearch: false,
+        filterSettings: FilterSettings()));
   }
 
   Widget createWidgetUnderTest() {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<PageSelectorCubit>(create: (context) => mockPageSelectorCubit),
+        BlocProvider<PageSelectorCubit>(
+            create: (context) => mockPageSelectorCubit),
         BlocProvider<BookViewCubit>(create: (context) => mockBookViewCubit),
         BlocProvider<BookLoaderCubit>(create: (context) => mockBookLoaderCubit),
       ],
