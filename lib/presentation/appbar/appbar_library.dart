@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:test_drive/application/book_view/book_view_cubit.dart';
+import 'package:test_drive/presentation/pages/library_page/components/book_view_helpers.dart';
 
 import 'appbar_helpers.dart';
 
@@ -23,7 +24,7 @@ class LibraryAppbar extends StatelessWidget {
             icon: FontAwesomeIcons.magnifyingGlass);
 
         final Widget _filterButton = button(
-            onPressed: () => print("filter pressed"),
+            onPressed: () => openFilterBottomSheet(context),
             icon: FontAwesomeIcons.filter);
 
         List<Widget> iconButtons = [

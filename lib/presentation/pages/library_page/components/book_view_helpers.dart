@@ -3,6 +3,7 @@ import 'package:hive/hive.dart';
 import 'package:iridium_reader_widget/views/viewers/epub_screen.dart';
 import 'package:test_drive/application/book_loader/book_loader_cubit.dart';
 import 'package:test_drive/presentation/pages/library_page/components/book_details/book_details.dart';
+import 'package:test_drive/presentation/pages/library_page/components/book_view_filter/bv_filter.dart';
 import 'package:test_drive/utils.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -52,4 +53,12 @@ void showBookDetails(BuildContext context, Book book) async {
   if (readBook) {
     context.read<BookLoaderCubit>().getBooks();
   }
+}
+
+void openFilterBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return BVFilter();
+      });
 }
